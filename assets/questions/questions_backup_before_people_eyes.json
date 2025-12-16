@@ -1,0 +1,228 @@
+{
+    "questions": [
+        {
+            "id": "general_001",
+            "categoryId": "general",
+            "imagePath": "images/global/lemon.jpg",
+            "answerText": "ليمون",
+            "difficulty": 1
+        },
+        {
+            "id": "general_002",
+            "categoryId": "general",
+            "imagePath": "images/global/iceland.jpg",
+            "answerText": "ايسلاند",
+            "difficulty": 2
+        },
+        {
+            "id": "general_003",
+            "categoryId": "general",
+            "imagePath": "images/global/5g.jpg",
+            "answerText": "5g",
+            "difficulty": 2
+        },
+        {
+            "id": "general_004",
+            "categoryId": "general",
+            "imagePath": "images/global/empty_quarter.jpg",
+            "answerText": "الربع الخالي",
+            "difficulty": 3
+        },
+        {
+            "id": "general_005",
+            "categoryId": "general",
+            "imagePath": "images/global/capitalism.jpg",
+            "answerText": "الرأس مالية",
+            "difficulty": 2
+        },
+        {
+            "id": "general_006",
+            "categoryId": "general",
+            "imagePath": "images/global/samosa.jpg",
+            "answerText": "سمبوسه",
+            "difficulty": 1
+        },
+        {
+            "id": "general_007",
+            "categoryId": "general",
+            "imagePath": "images/global/pulled_chicken.jpg",
+            "answerText": "دجاج مسحب",
+            "difficulty": 2
+        },
+        {
+            "id": "general_008",
+            "categoryId": "general",
+            "imagePath": "images/global/chess.jpg",
+            "answerText": "شطرنج",
+            "difficulty": 1
+        },
+        {
+            "id": "general_009",
+            "categoryId": "general",
+            "imagePath": "images/global/uber.jpg",
+            "answerText": "اوبر",
+            "difficulty": 1
+        },
+        {
+            "id": "general_010",
+            "categoryId": "general",
+            "imagePath": "images/global/bird.jpg",
+            "answerText": "عصفور",
+            "difficulty": 1
+        },
+        {
+            "id": "general_011",
+            "categoryId": "general",
+            "imagePath": "images/global/carrefour.jpg",
+            "answerText": "كارفور",
+            "difficulty": 1
+        },
+        {
+            "id": "general_012",
+            "categoryId": "general",
+            "imagePath": "images/global/shawarma.jpg",
+            "answerText": "شاورما",
+            "difficulty": 1
+        },
+        {
+            "id": "general_013",
+            "categoryId": "general",
+            "imagePath": "images/global/oyster.jpg",
+            "answerText": "محار",
+            "difficulty": 2
+        },
+        {
+            "id": "person_001",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/jawarshi.jpg",
+            "answerText": "جاورشي",
+            "difficulty": 2
+        },
+        {
+            "id": "person_002",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/zaid_muhannad.jpg",
+            "answerText": "زيد مهند",
+            "difficulty": 2
+        },
+        {
+            "id": "person_003",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/firas.jpg",
+            "answerText": "فراس",
+            "difficulty": 2
+        },
+        {
+            "id": "person_004",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/zain.jpg",
+            "answerText": "زين",
+            "difficulty": 2
+        },
+        {
+            "id": "person_005",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/omar_asaad.jpg",
+            "answerText": "عمر اسعد",
+            "difficulty": 2
+        },
+        {
+            "id": "person_006",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/fahad.jpg",
+            "answerText": "فهد",
+            "difficulty": 2
+        },
+        {
+            "id": "person_007",
+            "categoryId": "guess_person",
+            "imagePath": "images/people/tareq.jpg",
+            "answerText": "طارق",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_001",
+            "categoryId": "from_eye",
+            "imagePath": "images/1q.jpg",
+            "answerImagePath": "images/1a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_002",
+            "categoryId": "from_eye",
+            "imagePath": "images/2q.jpg",
+            "answerImagePath": "images/2a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_003",
+            "categoryId": "from_eye",
+            "imagePath": "images/3q.jpg",
+            "answerImagePath": "images/3a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_004",
+            "categoryId": "from_eye",
+            "imagePath": "images/4q.jpg",
+            "answerImagePath": "images/4a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_005",
+            "categoryId": "from_eye",
+            "imagePath": "images/5q.jpg",
+            "answerImagePath": "images/5a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_006",
+            "categoryId": "from_eye",
+            "imagePath": "images/6q.jpg",
+            "answerImagePath": "images/6a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_007",
+            "categoryId": "from_eye",
+            "imagePath": "images/7q.jpg",
+            "answerImagePath": "images/7a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_008",
+            "categoryId": "from_eye",
+            "imagePath": "images/8q.jpg",
+            "answerImagePath": "images/8a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_009",
+            "categoryId": "from_eye",
+            "imagePath": "images/9q.jpg",
+            "answerImagePath": "images/9a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_010",
+            "categoryId": "from_eye",
+            "imagePath": "images/10q.jpg",
+            "answerImagePath": "images/10a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_011",
+            "categoryId": "from_eye",
+            "imagePath": "images/11q.jpg",
+            "answerImagePath": "images/11a.jpg",
+            "difficulty": 2
+        },
+        {
+            "id": "eye_012",
+            "categoryId": "from_eye",
+            "imagePath": "images/12q.jpg",
+            "answerImagePath": "images/12a.jpg",
+            "difficulty": 2
+        }
+    ]
+}

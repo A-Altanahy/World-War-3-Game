@@ -1,0 +1,22 @@
+{
+    "categories": [
+        {
+            "id": "general",
+            "name": "عامة",
+            "description": "أسئلة عامة متنوعة",
+            "color": "#2196F3"
+        },
+        {
+            "id": "guess_person",
+            "name": "خمن الشخص",
+            "description": "خمن من هو الشخص في الصورة",
+            "color": "#FF9800"
+        },
+        {
+            "id": "from_eye",
+            "name": "من عينه",
+            "description": "أسئلة من وجهة نظر الشخص",
+            "color": "#9C27B0"
+        }
+    ]
+}
