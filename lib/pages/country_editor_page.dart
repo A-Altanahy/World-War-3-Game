@@ -284,8 +284,12 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
                                     final localPosition =
                                         renderBox.globalToLocal(details.offset);
 
+                                    // Add offset to center the marker (20 is half of 40 width/height)
+                                    final centeredPosition =
+                                        localPosition + const Offset(20, 20);
+
                                     _updateCountryPosition(country.id,
-                                        localPosition, containerSize);
+                                        centeredPosition, containerSize);
                                   },
                                   child: _buildCountryMarker(country),
                                 ),
@@ -321,7 +325,8 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
 
   Widget _buildCountryMarker(Country country, {bool isDragging = false}) {
     return GestureDetector(
-      onSecondaryTap: () => _showCountryOptions(country),
+      onTap: () => _showCountryOptions(country),
+      // onSecondaryTap: () => _showCountryOptions(country), // Removed in favor of onTap for better UX
       child: Container(
         width: 40,
         height: 40,

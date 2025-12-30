@@ -37,7 +37,7 @@ class _TeamSetupPageState extends State<TeamSetupPage>
     AppTheme.secondaryNeon, // Neon Pink
     AppTheme.accentOrange, // Neon Orange
     const Color(0xFF9D4EDD), // Neon Purple
-    const Color(0xFF06D6A0), // Teal
+    const Color(0xFF3F51B5), // Indigo (Distinct from Teal)
     const Color(0xFFFFD60A), // Electric Yellow
     const Color(0xFF003566), // Dark Blue
     const Color(0xFFDC2F02), // Electric Red
@@ -258,7 +258,7 @@ class _TeamSetupPageState extends State<TeamSetupPage>
           pageBuilder: (context, animation, secondaryAnimation) =>
               ChangeNotifierProvider.value(
             value: gameState,
-            child: const MapPage(),
+            child: const MapPage(slotId: 1),
           ),
           transitionDuration: const Duration(milliseconds: 1200),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

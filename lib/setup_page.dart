@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'map_page.dart';
+import 'services/game_storage_service.dart';
 import '../models/country_positions.dart'; // Import the country positions
 
 class SetupPage extends StatefulWidget {
@@ -36,6 +37,8 @@ class _SetupPageState extends State<SetupPage> {
   // List to hold initial countries
   List<Country> _initialCountries = [];
 
+  bool _hasSaveGame = false;
+
   @override
   void initState() {
     super.initState();
@@ -48,7 +51,53 @@ class _SetupPageState extends State<SetupPage> {
             )));
     // Initialize countries from country_positions.dart
     _initialCountries = getInitialCountries();
-    print('Initial Countries Loaded: $_initialCountries');
+    _checkForSaveGame();
+  }
+
+  Future<void> _checkForSaveGame() async {
+    final storage = GameStorageService();
+    final hasSave = await storage.hasSaveGame(1);
+    if (mounted) {
+      setState(() {
+        _hasSaveGame = hasSave;
+      });
+    }
+  }
+
+  Future<void> _continueGame() async {
+    final storage = GameStorageService();
+    final json = await storage.loadGame(1);
+
+    if (json != null && mounted) {
+      // Initialize GameState with placeholders, then restore
+      QuestionService questionService = QuestionService();
+      await questionService.initialize();
+
+      // We need to initialize with some empty data first
+      // The restoreState method will handle clearing and repopulating
+      GameState gameState = GameState(
+        teams: [],
+        countries: _initialCountries
+            .map((c) => Country(
+                id: c.id,
+                name: c.name,
+                normalizedPosition: c.normalizedPosition))
+            .toList(),
+        questionService: questionService,
+      );
+
+      gameState.restoreState(json);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider<GameState>.value(
+            value: gameState,
+            child: const MapPage(slotId: 1),
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -70,8 +119,6 @@ class _SetupPageState extends State<SetupPage> {
       } else if (_teams.length > count) {
         _teams.removeRange(count, _teams.length);
       }
-      print('Updated Team Count: $_teamCount');
-      print('Teams: $_teams');
     });
   }
 
@@ -124,23 +171,6 @@ class _SetupPageState extends State<SetupPage> {
         );
       }).toList();
 
-      // Debug: Print initial countries before assignment
-      print('Countries before assignment:');
-      for (var country in initialCountries) {
-        print(
-            'Country ID: ${country.id}, Position: ${country.normalizedPosition}');
-      }
-
-      // Countries start unassigned (no team ownership)
-      // No need to assign countries to teams initially
-
-      // Debug: Print countries (all unassigned)
-      print('Countries remain unassigned:');
-      for (var country in initialCountries) {
-        print(
-            'Country ID: ${country.id}, Owner: ${country.owner?.name ?? "None"}, Troops: ${country.troops}');
-      }
-
       // Initialize GameState
       QuestionService questionService = QuestionService();
       await questionService.initialize();
@@ -177,10 +207,32 @@ class _SetupPageState extends State<SetupPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
+                  if (_hasSaveGame) ...[
+                    const SizedBox(height: 40),
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          onPressed: _continueGame,
+                          icon: const Icon(Icons.play_arrow),
+                          label: const Text('اكمال اللعبة السابقة'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            backgroundColor: Colors.green,
+                            foregroundColor: Colors.white,
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Divider(thickness: 1, color: Colors.grey),
+                  ],
+                  const SizedBox(height: 20),
                   Center(
                     child: Text(
-                      'إعداد الفرق',
+                      'إعداد الفرق (لعبة جديدة)',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),

@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 
 class CoordinateConverter {
-  // Standard SVG dimensions that both editor and game should use
-  static const double standardSvgWidth = 900.0;
-  static const double standardSvgHeight = 600.0;
+  // Standard SVG dimensions from actual file assets/game_map.svg
+  static const double standardSvgWidth = 493.979;
+  static const double standardSvgHeight = 303.023;
 
   // Calculate how BoxFit.contain positions the SVG within a container
   static SvgLayout calculateSvgLayout(Size containerSize) {

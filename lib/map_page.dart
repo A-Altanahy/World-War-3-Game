@@ -9,9 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'utils/coordinate_converter.dart';
+import 'services/game_storage_service.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+  final int slotId;
+  const MapPage(
+      {super.key, this.slotId = 1}); // Default to slot 1 if not specified
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -181,16 +184,44 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                                Text(
-                                  country.isBase
-                                      ? '1000 نقطة قتالية'
-                                      : '200 نقطة قتالية',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: AppTheme.textSecondary,
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${country.troops} نقطة قتالية',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: AppTheme.textSecondary,
+                                          ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: AppTheme.primaryNeon
+                                                .withOpacity(0.5)),
                                       ),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await _showEditPointsDialog(
+                                              context, gameState, country);
+                                          // Rebuild dialog to show new points
+                                          setState(() {});
+                                        },
+                                        customBorder: const CircleBorder(),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Icon(
+                                            Icons.edit,
+                                            size: 16,
+                                            color: AppTheme.primaryNeon,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -210,6 +241,29 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
 
                     const SizedBox(height: 24),
 
+                    // Defend Button (Only for owner in War Phase)
+                    if (gameState.phase == GamePhase.war &&
+                        country.owner != null &&
+                        country.owner!.name.isNotEmpty) ...[
+                      // We check name.isNotEmpty as a proxy for valid team logic,
+                      // simpler check is just owner != null.
+                      // Ideally checking if owner is the "current player" but we simulate hotseat
+                      // so we show it if the country is owned.
+                      NeonButton(
+                        text: 'دفاع (+50 للفريق)',
+                        icon: Icons.shield,
+                        color: AppTheme.primaryNeon,
+                        textColor: Colors.black,
+                        height: 45,
+                        width: double.infinity,
+                        onPressed: () {
+                          gameState.defendCountry(country);
+                          Navigator.pop(context);
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+
                     // Team assignment section
                     Text(
                       'تعيين القوة المسيطرة',
@@ -226,6 +280,14 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                         itemCount: gameState.teams.length,
                         itemBuilder: (context, index) {
                           final team = gameState.teams[index];
+
+                          // In war phase, don't show the current owner in the list
+                          // This forces the user to choose a different team (attacker)
+                          if (gameState.phase == GamePhase.war &&
+                              country.owner == team) {
+                            return const SizedBox.shrink();
+                          }
+
                           final isSelected = country.owner == team;
 
                           return Container(
@@ -280,6 +342,51 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     );
   }
 
+  Future<void> _showEditPointsDialog(
+      BuildContext context, GameState gameState, country) async {
+    final controller = TextEditingController(text: country.troops.toString());
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: AppTheme.surfaceDark,
+          title: const Text('تعديل النقاط',
+              style: TextStyle(color: AppTheme.textPrimary)),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            style: const TextStyle(color: AppTheme.textPrimary),
+            decoration: const InputDecoration(
+              labelText: 'النقاط الجديدة',
+              labelStyle: TextStyle(color: AppTheme.textMuted),
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.textMuted)),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.primaryNeon)),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('إلغاء'),
+            ),
+            TextButton(
+              onPressed: () {
+                final newPoints = int.tryParse(controller.text);
+                if (newPoints != null) {
+                  gameState.updateCountryPoints(country, newPoints);
+                }
+                Navigator.pop(context);
+              },
+              child: const Text('حفظ',
+                  style: TextStyle(color: AppTheme.primaryNeon)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _showQuestionDialog(BuildContext context) {
     final gameState = Provider.of<GameState>(context, listen: false);
     showDialog(
@@ -328,40 +435,53 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     return Positioned.fill(
       child: Container(
         margin: const EdgeInsets.all(16),
-        child: CommandCard(
-          padding: const EdgeInsets.all(12),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return Stack(
-                children: [
-                  // SVG Map - scale to maintain aspect ratio (same as editor)
-                  Positioned.fill(
-                    child: SvgPicture.asset(
-                      'assets/game_map.svg',
-                      fit: BoxFit.contain, // Maintain aspect ratio like editor
-                      width: double.infinity,
-                      height: double.infinity,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          // Add padding on the right when stats are shown to shift the map
+          // 280 (panel width) + 16 (right margin) + 16 (extra spacing)
+          // Add padding on top to avoid HUD overlap (80 height + spacing)
+          padding: EdgeInsets.only(
+            right: _showStats ? 312 : 0,
+            top: 90, // HUD height (80) + 10 extra spacing
+          ),
+          child: CommandCard(
+            padding: const EdgeInsets.all(12),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // SVG Map - scale to maintain aspect ratio (same as editor)
+                    Positioned.fill(
+                      child: SvgPicture.asset(
+                        'assets/game_map.svg',
+                        fit:
+                            BoxFit.contain, // Maintain aspect ratio like editor
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
                     ),
-                  ),
 
-                  // Country overlays
-                  ...gameState.countries.map((country) {
-                    final screenPosition =
-                        CoordinateConverter.normalizedToEditor(
-                      country.normalizedPosition,
-                      Size(constraints.maxWidth,
-                          constraints.maxHeight), // Use actual container size
-                    );
+                    // Country overlays
+                    ...gameState.countries.map((country) {
+                      final screenPosition =
+                          CoordinateConverter.normalizedToEditor(
+                        country.normalizedPosition,
+                        Size(constraints.maxWidth,
+                            constraints.maxHeight), // Use actual container size
+                      );
 
-                    return Positioned(
-                      left: screenPosition.dx - 20,
-                      top: screenPosition.dy - 20,
-                      child: _buildCountryMarker(country, gameState),
-                    );
-                  }),
-                ],
-              );
-            },
+                      return Positioned(
+                        left: screenPosition.dx - 20,
+                        top: screenPosition.dy - 20,
+                        child: _buildCountryMarker(country, gameState),
+                      );
+                    }),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -427,14 +547,18 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'مسرح العمليات',
+                    gameState.phase == GamePhase.war
+                        ? 'مسرح العمليات'
+                        : 'مرحلة التوزيع',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: AppTheme.textPrimary,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Text(
-                    'Command Theater',
+                    gameState.phase == GamePhase.war
+                        ? 'Command Theater'
+                        : 'Deployment Phase',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppTheme.textMuted,
                           letterSpacing: 1.1,
@@ -446,13 +570,29 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
               const Spacer(),
 
               // Action buttons
-              NeonButton(
-                text: 'الأسئلة',
-                icon: Icons.quiz,
-                height: 40,
-                width: 100,
-                onPressed: () => _showQuestionDialog(context),
-              ),
+              if (gameState.phase == GamePhase.distribution)
+                NeonButton(
+                  text: 'بدء الحرب',
+                  icon: Icons.flash_on, // Changed icon for war start
+                  color: AppTheme.warningRed,
+                  textColor: Colors.white,
+                  height: 40,
+                  width: 140,
+                  onPressed: () {
+                    setState(() {
+                      gameState.startWar();
+                    });
+                  },
+                ),
+
+              if (gameState.phase == GamePhase.war)
+                NeonButton(
+                  text: 'الأسئلة',
+                  icon: Icons.quiz,
+                  height: 40,
+                  width: 100,
+                  onPressed: () => _showQuestionDialog(context),
+                ),
 
               const SizedBox(width: 12),
 
@@ -613,6 +753,30 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
           //     color: AppTheme.primaryNeon,
           //   ),
           // ),
+          const SizedBox(height: 12),
+          FloatingActionButton(
+            heroTag: "save",
+            onPressed: () async {
+              final gameState = Provider.of<GameState>(context, listen: false);
+              final storage = GameStorageService();
+              await storage.saveGame(gameState, widget.slotId);
+
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('تم حفظ اللعبة بنجاح!'),
+                    backgroundColor: AppTheme.primaryNeon,
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
+            backgroundColor: AppTheme.surfaceDark,
+            child: const Icon(
+              Icons.save,
+              color: AppTheme.primaryNeon,
+            ),
+          ),
           const SizedBox(height: 12),
           FloatingActionButton(
             heroTag: "exit",
