@@ -119,93 +119,105 @@ class _TeamSetupPageState extends State<TeamSetupPage>
       context: context,
       builder: (context) {
         Color tempColor = _teams[index].color;
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          child: CommandCard(
-            width: 350,
-            height: 500,
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                // Header
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // Use LayoutBuilder to get available height for the dialog content
+        return LayoutBuilder(builder: (context, constraints) {
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child: SingleChildScrollView(
+              child: CommandCard(
+                width: 350,
+                // Removed fixed height to prevent overflow
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize:
+                      MainAxisSize.min, // Allow card to shrink-wrap content
                   children: [
-                    Text(
-                      'اختر اللون التكتيكي',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppTheme.textPrimary,
-                            fontWeight: FontWeight.bold,
+                    // Header
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'اختر اللون التكتيكي',
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: AppTheme.textPrimary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(
+                            Icons.close,
+                            color: AppTheme.primaryNeon,
                           ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(
-                        Icons.close,
-                        color: AppTheme.primaryNeon,
+                    const SizedBox(height: 20),
+
+                    // Color Picker
+                    // Changed to remove Expanded which requires bounded height parent
+                    Container(
+                      constraints: BoxConstraints(
+                        maxHeight: constraints.maxHeight *
+                            0.5, // Limit picker height to 50% screen
                       ),
+                      child: SingleChildScrollView(
+                        child: ColorPicker(
+                          pickerColor: tempColor,
+                          onColorChanged: (color) {
+                            tempColor = color;
+                          },
+                          colorPickerWidth: 280,
+                          pickerAreaHeightPercent: 0.7,
+                          enableAlpha: false,
+                          displayThumbColor: true,
+                          // Removed paletteType: PaletteType.hueWheel to allow full spectrum selection
+                          labelTypes: const [],
+                          pickerAreaBorderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Action buttons
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('إلغاء'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: NeonButton(
+                            text: 'تأكيد',
+                            height: 45,
+                            onPressed: () {
+                              // Check if the color is already used
+                              if (_teams.any((team) =>
+                                  team.color.value == tempColor.value &&
+                                  team != _teams[index])) {
+                                return;
+                              }
+
+                              setState(() {
+                                _teams[index].color = tempColor;
+                              });
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-
-                // Color Picker
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: ColorPicker(
-                      pickerColor: tempColor,
-                      onColorChanged: (color) {
-                        tempColor = color;
-                      },
-                      colorPickerWidth: 280,
-                      pickerAreaHeightPercent: 0.8,
-                      enableAlpha: false,
-                      displayThumbColor: true,
-                      paletteType: PaletteType.hueWheel,
-                      labelTypes: const [],
-                      pickerAreaBorderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                // Action buttons
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('إلغاء'),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: NeonButton(
-                        text: 'تأكيد',
-                        height: 45,
-                        onPressed: () {
-                          // Check if the color is already used
-                          if (_teams.any((team) =>
-                              team.color == tempColor &&
-                              team != _teams[index])) {
-                            // Error message removed
-                            return;
-                          }
-
-                          setState(() {
-                            _teams[index].color = tempColor;
-                          });
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
-        );
+          );
+        });
       },
     );
   }
@@ -237,6 +249,7 @@ class _TeamSetupPageState extends State<TeamSetupPage>
               name: country.name,
               normalizedPosition: country.normalizedPosition,
               isBase: country.isBase,
+              svgId: country.svgId, // Pass svgId to ensure map works
             ))
         .toList();
 
@@ -258,7 +271,11 @@ class _TeamSetupPageState extends State<TeamSetupPage>
           pageBuilder: (context, animation, secondaryAnimation) =>
               ChangeNotifierProvider.value(
             value: gameState,
-            child: const MapPage(slotId: 1),
+            child: MapPage(
+              slotId: 1,
+              mapAsset: widget.configuration.interactiveMapAsset ??
+                  'assets/original_full_map(42).svg',
+            ),
           ),
           transitionDuration: const Duration(milliseconds: 1200),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

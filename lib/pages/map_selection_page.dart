@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/country_configuration.dart';
-import '../services/configuration_service.dart';
 import '../theme/app_theme.dart';
-import '../widgets/command_card.dart';
 import '../widgets/map_preview_card.dart';
-import 'country_editor_page.dart';
 import 'team_setup_page.dart';
 import '../models/country_positions.dart';
 
@@ -27,56 +24,32 @@ class _MapSelectionPageState extends State<MapSelectionPage>
   }
 
   Future<void> _loadConfigurations() async {
-    try {
-      final configurations = await ConfigurationService.getConfigurations();
-
-      if (configurations.isEmpty) {
-        // Auto-create default configuration if none exists
-        await _createDefaultConfiguration();
-        return; // _createDefaultConfiguration calls _loadConfigurations again
-      }
-
-      setState(() {
-        _configurations = configurations;
-        _isLoading = false;
-      });
-    } catch (e) {
-      setState(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _createDefaultConfiguration() async {
-    setState(() => _isLoading = true);
-    try {
-      final defaultCountries = getInitialCountries();
-      final defaultConfig = CountryConfiguration(
-        id: 'default',
-        name: 'الخريطة الافتراضية',
-        countries: defaultCountries,
-        createdAt: DateTime.now(),
-        lastModified: DateTime.now(),
-      );
-
-      await ConfigurationService.saveConfiguration(defaultConfig);
-      await _loadConfigurations();
-    } catch (e) {
-      setState(() => _isLoading = false);
-    }
-  }
-
-  void _navigateToEditor({CountryConfiguration? existingConfig}) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>
-            CountryEditorPage(existingConfiguration: existingConfig),
-      ),
+    // Hardcoded configurations for the two maps
+    final config42 = CountryConfiguration(
+      id: 'map_42',
+      name: 'خريطة 42 منطقة', // 42 Lands Map
+      countries: getInitialCountries(),
+      createdAt: DateTime.now(),
+      lastModified: DateTime.now(),
+      interactiveMapAsset: 'assets/original_full_map(42).svg',
     );
 
-    if (result == true) {
-      _loadConfigurations();
-    }
+    final config20 = CountryConfiguration(
+      id: 'map_20',
+      name: 'خريطة 20 منطقة', // 20 Lands Map
+      countries: getQuickMapCountries(),
+      createdAt: DateTime.now(),
+      lastModified: DateTime.now(),
+      interactiveMapAsset: 'assets/original_map(20).svg',
+    );
+
+    setState(() {
+      _configurations = [config42, config20];
+      _isLoading = false;
+    });
   }
+
+  // Removed _createDefaultConfiguration and _navigateToEditor as we don't want custom maps now
 
   void _selectConfiguration(CountryConfiguration config) {
     Navigator.push(
@@ -87,19 +60,12 @@ class _MapSelectionPageState extends State<MapSelectionPage>
     );
   }
 
-  Future<void> _deleteConfiguration(CountryConfiguration config) async {
-    try {
-      await ConfigurationService.deleteConfiguration(config.id);
-      _loadConfigurations();
-    } catch (e) {
-      // Handle error
-    }
-  }
+  // Removed _deleteConfiguration
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.darkBackground, // Backup background
+      backgroundColor: AppTheme.darkBackground,
       body: Container(
         decoration: const BoxDecoration(
           gradient: AppTheme.backgroundGradient,
@@ -144,26 +110,13 @@ class _MapSelectionPageState extends State<MapSelectionPage>
               ),
             ],
           ),
-          NeonButton(
-            text: 'تصميم خريطة',
-            icon: Icons.add,
-            height: 40,
-            width: 140,
-            onPressed: () => _navigateToEditor(),
-          ),
+          // "Design Map" button removed
         ],
       ),
     );
   }
 
   Widget _buildContent() {
-    if (_configurations.isEmpty && !_isLoading) {
-      return const Center(
-        child: Text('جاري إنشاء الخريطة الافتراضية...',
-            style: TextStyle(color: Colors.white)),
-      );
-    }
-
     return GridView.builder(
       padding: const EdgeInsets.all(24),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -178,11 +131,11 @@ class _MapSelectionPageState extends State<MapSelectionPage>
         return MapPreviewCard(
           config: config,
           onTap: () => _selectConfiguration(config),
-          onEdit: () => _navigateToEditor(existingConfig: config),
-          onDelete: () => _deleteConfiguration(config),
+          // Disable edit/delete
+          onEdit: null,
+          onDelete: null,
         );
       },
-      // You can also add a special card for "Add New" in the grid if desired
     );
   }
 }

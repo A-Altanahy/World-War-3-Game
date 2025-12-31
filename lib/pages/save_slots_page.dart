@@ -67,7 +67,9 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider.value(
                 value: gameState,
-                child: MapPage(slotId: slotId),
+                child: MapPage(
+                    slotId: slotId,
+                    mapAsset: 'assets/original_full_map(42).svg'),
               ),
             ),
           ).then((_) => _loadSlots());

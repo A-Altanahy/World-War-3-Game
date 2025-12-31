@@ -12,14 +12,16 @@ class Country {
   bool isBase; // Whether this country is a base (1000 points instead of 200)
 
   int captureBonus; // Points added from captures
+  final String? svgId; // Optional link to an SVG path ID for interactive maps
 
   Country({
     required this.id,
     required this.name,
     required this.normalizedPosition,
     this.owner,
-    this.isBase = false, // Default to false (regular country)
+    this.isBase = false,
     this.captureBonus = 0,
+    this.svgId,
   });
 
   // Countries carry 1000 troops if base, 200 if regular, plus any capture bonuses
@@ -40,6 +42,7 @@ class Country {
       },
       'isBase': isBase,
       'captureBonus': captureBonus,
+      'svgId': svgId,
       // Note: owner is not serialized as it's assigned during game setup
       // Note: troops is calculated based on isBase and captureBonus
     };
@@ -49,12 +52,30 @@ class Country {
   factory Country.fromJson(Map<String, dynamic> json) {
     // Handle both old 'position' format and new 'normalizedPosition' format
     final positionData = json['normalizedPosition'] ?? json['position'];
+
+    String? loadedSvgId = json['svgId'];
+    // Fallback for saves created before svgId was added
+    if (loadedSvgId == null) {
+      final intId = int.tryParse(json['id'].toString());
+      if (intId != null) {
+        if (intId >= 100) {
+          // Quick Map (20 countries): IDs 100+ -> Country1..20
+          // Logic: id = key + 100, svgId = key + 1. So svgId = id - 99.
+          loadedSvgId = 'Country${intId - 99}';
+        } else {
+          // Full Map (42 countries): IDs 1..42 -> Country1..42
+          loadedSvgId = 'Country$intId';
+        }
+      }
+    }
+
     return Country(
       id: json['id'],
       name: json['name'],
       normalizedPosition: Offset(positionData['dx'], positionData['dy']),
       isBase: json['isBase'] ?? false, // Default to false if not specified
       captureBonus: json['captureBonus'] ?? 0,
+      svgId: loadedSvgId,
     );
   }
 
@@ -66,6 +87,7 @@ class Country {
     Team? owner,
     bool? isBase,
     int? captureBonus,
+    String? svgId,
   }) {
     return Country(
       id: id ?? this.id,
@@ -74,6 +96,7 @@ class Country {
       owner: owner ?? this.owner,
       isBase: isBase ?? this.isBase,
       captureBonus: captureBonus ?? this.captureBonus,
+      svgId: svgId ?? this.svgId,
     );
   }
 }

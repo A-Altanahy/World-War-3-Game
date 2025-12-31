@@ -93,7 +93,8 @@ class _SetupPageState extends State<SetupPage> {
         MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider<GameState>.value(
             value: gameState,
-            child: const MapPage(slotId: 1),
+            child: const MapPage(
+                slotId: 1, mapAsset: 'assets/original_full_map(42).svg'),
           ),
         ),
       );
@@ -186,7 +187,7 @@ class _SetupPageState extends State<SetupPage> {
         MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider<GameState>.value(
             value: gameState,
-            child: const MapPage(),
+            child: const MapPage(mapAsset: 'assets/original_full_map(42).svg'),
           ),
         ),
       );

@@ -6,16 +6,16 @@ import '../theme/app_theme.dart';
 class MapPreviewCard extends StatefulWidget {
   final CountryConfiguration config;
   final VoidCallback onTap;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
   final int index;
 
   const MapPreviewCard({
     super.key,
     required this.config,
     required this.onTap,
-    required this.onEdit,
-    required this.onDelete,
+    this.onEdit,
+    this.onDelete,
     this.index = 0,
   });
 
@@ -161,60 +161,66 @@ class _MapPreviewCardState extends State<MapPreviewCard>
                       ),
 
                       // Menu Button
-                      Positioned(
-                        top: 8,
-                        left: 8,
-                        child: Material(
-                          color: Colors.transparent,
-                          child: PopupMenuButton<String>(
-                            icon: Icon(
-                              Icons.more_horiz,
-                              color: Colors.white.withOpacity(0.8),
-                            ),
-                            color: AppTheme.cardDark,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: BorderSide(
-                                  color: AppTheme.primaryNeon.withOpacity(0.3)),
-                            ),
-                            onSelected: (value) {
-                              if (value == 'edit') {
-                                widget.onEdit();
-                              } else if (value == 'delete') {
-                                widget.onDelete();
-                              }
-                            },
-                            itemBuilder: (context) => [
-                              const PopupMenuItem(
-                                value: 'edit',
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.edit,
-                                        size: 18, color: AppTheme.primaryNeon),
-                                    SizedBox(width: 8),
-                                    Text('تعديل',
-                                        style: TextStyle(
-                                            color: AppTheme.textPrimary)),
-                                  ],
-                                ),
+                      if (widget.onEdit != null || widget.onDelete != null)
+                        Positioned(
+                          top: 8,
+                          left: 8,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: PopupMenuButton<String>(
+                              icon: Icon(
+                                Icons.more_horiz,
+                                color: Colors.white.withOpacity(0.8),
                               ),
-                              const PopupMenuItem(
-                                value: 'delete',
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.delete,
-                                        size: 18, color: AppTheme.warningRed),
-                                    SizedBox(width: 8),
-                                    Text('حذف',
-                                        style: TextStyle(
-                                            color: AppTheme.warningRed)),
-                                  ],
-                                ),
+                              color: AppTheme.cardDark,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(
+                                    color:
+                                        AppTheme.primaryNeon.withOpacity(0.3)),
                               ),
-                            ],
+                              onSelected: (value) {
+                                if (value == 'edit') {
+                                  widget.onEdit?.call();
+                                } else if (value == 'delete') {
+                                  widget.onDelete?.call();
+                                }
+                              },
+                              itemBuilder: (context) => [
+                                if (widget.onEdit != null)
+                                  const PopupMenuItem(
+                                    value: 'edit',
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.edit,
+                                            size: 18,
+                                            color: AppTheme.primaryNeon),
+                                        SizedBox(width: 8),
+                                        Text('تعديل',
+                                            style: TextStyle(
+                                                color: AppTheme.textPrimary)),
+                                      ],
+                                    ),
+                                  ),
+                                if (widget.onDelete != null)
+                                  const PopupMenuItem(
+                                    value: 'delete',
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.delete,
+                                            size: 18,
+                                            color: AppTheme.warningRed),
+                                        SizedBox(width: 8),
+                                        Text('حذف',
+                                            style: TextStyle(
+                                                color: AppTheme.warningRed)),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),

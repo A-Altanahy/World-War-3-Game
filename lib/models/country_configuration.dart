@@ -9,6 +9,8 @@ class CountryConfiguration {
   final List<Country> countries;
   final DateTime createdAt;
   final DateTime lastModified;
+  final String?
+      interactiveMapAsset; // Path to a custom SVG asset if this config uses interactive regions
 
   CountryConfiguration({
     required this.id,
@@ -16,6 +18,7 @@ class CountryConfiguration {
     required this.countries,
     required this.createdAt,
     required this.lastModified,
+    this.interactiveMapAsset,
   });
 
   // Convert to JSON for storage
@@ -26,6 +29,7 @@ class CountryConfiguration {
       'countries': countries.map((country) => country.toJson()).toList(),
       'createdAt': createdAt.toIso8601String(),
       'lastModified': lastModified.toIso8601String(),
+      'interactiveMapAsset': interactiveMapAsset,
     };
   }
 
@@ -39,6 +43,7 @@ class CountryConfiguration {
           .toList(),
       createdAt: DateTime.parse(json['createdAt']),
       lastModified: DateTime.parse(json['lastModified']),
+      interactiveMapAsset: json['interactiveMapAsset'],
     );
   }
 
@@ -56,6 +61,7 @@ class CountryConfiguration {
     List<Country>? countries,
     DateTime? createdAt,
     DateTime? lastModified,
+    String? interactiveMapAsset,
   }) {
     return CountryConfiguration(
       id: id ?? this.id,
@@ -63,6 +69,7 @@ class CountryConfiguration {
       countries: countries ?? this.countries,
       createdAt: createdAt ?? this.createdAt,
       lastModified: lastModified ?? this.lastModified,
+      interactiveMapAsset: interactiveMapAsset ?? this.interactiveMapAsset,
     );
   }
 }

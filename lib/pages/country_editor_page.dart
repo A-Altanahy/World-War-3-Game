@@ -236,7 +236,7 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
                           children: [
                             // SVG Map Background
                             SvgPicture.asset(
-                              'assets/game_map.svg',
+                              'assets/original_full_map(42).svg',
                               fit: BoxFit.contain,
                               width: double.infinity,
                               height: double.infinity,

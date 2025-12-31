@@ -4,17 +4,22 @@ import 'package:custom_risk/game_state.dart';
 import 'package:custom_risk/theme/app_theme.dart';
 import 'package:custom_risk/utils/fullscreen_helper.dart';
 import 'package:custom_risk/widgets/command_card.dart';
+import 'package:custom_risk/widgets/vector_map.dart';
 import 'package:custom_risk/widgets/question_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:provider/provider.dart';
-import 'utils/coordinate_converter.dart';
 import 'services/game_storage_service.dart';
 
 class MapPage extends StatefulWidget {
   final int slotId;
-  const MapPage(
-      {super.key, this.slotId = 1}); // Default to slot 1 if not specified
+  final String mapAsset;
+
+  const MapPage({
+    super.key,
+    this.slotId = 1,
+    required this.mapAsset, // Now required to support different maps
+  });
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -438,12 +443,9 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          // Add padding on the right when stats are shown to shift the map
-          // 280 (panel width) + 16 (right margin) + 16 (extra spacing)
-          // Add padding on top to avoid HUD overlap (80 height + spacing)
           padding: EdgeInsets.only(
             right: _showStats ? 312 : 0,
-            top: 90, // HUD height (80) + 10 extra spacing
+            top: 90,
           ),
           child: CommandCard(
             padding: const EdgeInsets.all(12),
@@ -452,71 +454,26 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                 return Stack(
                   fit: StackFit.expand,
                   children: [
-                    // SVG Map - scale to maintain aspect ratio (same as editor)
+                    // Interactive Map with Dynamic Coloring
+                    // Using 'original_full_map(42).svg' as default based on updated data
                     Positioned.fill(
-                      child: SvgPicture.asset(
-                        'assets/game_map.svg',
-                        fit:
-                            BoxFit.contain, // Maintain aspect ratio like editor
-                        width: double.infinity,
-                        height: double.infinity,
+                      child: VectorMap(
+                        mapAsset: gameState.countries.length == 20
+                            ? 'assets/original_map(20).svg'
+                            : 'assets/original_full_map(42).svg',
+                        countries: gameState.countries,
+                        onCountryTap: (country) =>
+                            _onCountryTap(context, country),
                       ),
                     ),
 
-                    // Country overlays
-                    ...gameState.countries.map((country) {
-                      final screenPosition =
-                          CoordinateConverter.normalizedToEditor(
-                        country.normalizedPosition,
-                        Size(constraints.maxWidth,
-                            constraints.maxHeight), // Use actual container size
-                      );
-
-                      return Positioned(
-                        left: screenPosition.dx - 20,
-                        top: screenPosition.dy - 20,
-                        child: _buildCountryMarker(country, gameState),
-                      );
-                    }),
+                    // Country overlays (Markers) - REMOVED as per request
+                    // We now rely on clicking the land vectors in InteractiveMap
+                    // ...gameState.countries.map((country) { ... })
                   ],
                 );
               },
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCountryMarker(country, GameState gameState) {
-    final hasOwner = country.owner != null;
-    final ownerColor = hasOwner ? country.owner!.color : AppTheme.textMuted;
-
-    return GestureDetector(
-      onTap: () => _onCountryTap(context, country),
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: ownerColor.withOpacity(hasOwner ? 0.8 : 0.3),
-          border: Border.all(
-            color: country.isBase ? AppTheme.accentOrange : ownerColor,
-            width: country.isBase ? 3 : 2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: ownerColor.withOpacity(0.3),
-              blurRadius: hasOwner ? 6 : 3,
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Center(
-          child: Icon(
-            country.isBase ? Icons.star : Icons.location_on,
-            color: hasOwner ? Colors.white : AppTheme.textMuted,
-            size: country.isBase ? 24 : 20,
           ),
         ),
       ),
