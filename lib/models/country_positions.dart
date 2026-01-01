@@ -219,8 +219,8 @@ final List<Map<String, dynamic>> countryPositions = [
   }
 ];
 
-List<Country> getInitialCountries() {
-  return countryPositions.asMap().entries.map((entry) {
+List<Country> getInitialCountries({int count = 42}) {
+  return countryPositions.take(count).toList().asMap().entries.map((entry) {
     final index = entry.key;
     final countryData = entry.value;
     return Country(

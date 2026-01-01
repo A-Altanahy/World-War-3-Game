@@ -37,7 +37,7 @@ class _MapSelectionPageState extends State<MapSelectionPage>
     final config20 = CountryConfiguration(
       id: 'map_20',
       name: 'خريطة 20 منطقة', // 20 Lands Map
-      countries: getQuickMapCountries(),
+      countries: getInitialCountries(count: 20),
       createdAt: DateTime.now(),
       lastModified: DateTime.now(),
       interactiveMapAsset: 'assets/original_map(20).svg',
