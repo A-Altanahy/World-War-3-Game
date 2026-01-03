@@ -4,6 +4,7 @@ import 'package:custom_risk/models/country.dart';
 import 'package:custom_risk/utils/svg_path_parser.dart';
 import 'dart:ui'; // Needed for ImageFilter
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:custom_risk/theme/app_theme.dart';
 
 class VectorMap extends StatefulWidget {
   final String mapAsset;
@@ -83,9 +84,18 @@ class _VectorMapState extends State<VectorMap> {
       // We search for "id="CountryXX"" then scan forward/backward for "d".
       // But standard grep showed they are on the same line/tag usually.
 
+      print('VectorMap: Loading map asset: ${widget.mapAsset}');
+      print('VectorMap: Provided countries count: ${widget.countries.length}');
+      if (widget.countries.isNotEmpty) {
+        print(
+            'VectorMap: Sample Country IDs: ${widget.countries.take(3).map((c) => "${c.id}(${c.svgId})").join(", ")}');
+      }
+
       // Regex to find IDs (supports double and single quotes)
       final idRegex = RegExp(r'id=["\047]([^"\047]+)["\047]');
       final allIdMatches = idRegex.allMatches(svgString);
+
+      print('VectorMap: Found ${allIdMatches.length} ID matches in SVG.');
 
       for (final match in allIdMatches) {
         String originalId = match.group(1)!;
@@ -164,8 +174,17 @@ class _VectorMapState extends State<VectorMap> {
 
       print('Parsed ${paths.length} paths for map.');
       if (paths.isEmpty) {
+        // Collect debug info
+        final foundIds = allIdMatches.take(5).map((m) => m.group(1)).join(', ');
+        final countrySample = widget.countries
+            .take(5)
+            .map((c) => '${c.id}(${c.svgId})')
+            .join(', ');
+
         setState(() {
-          _debugError = 'Parsed 0 paths! Check SVG IDs vs Country Model names.';
+          _debugError = 'Parsed 0 paths!\nAsset: ${widget.mapAsset}\n'
+              'SVG IDs found (${allIdMatches.length}): $foundIds...\n'
+              'Countries provided (${widget.countries.length}): $countrySample...';
         });
       }
 
@@ -315,25 +334,27 @@ class VectorMapPainter extends CustomPainter {
         canvas.drawPath(path, paint);
       }
 
-      // Draw star for base lands
+      // Draw gold stroke for base lands
       if (country != null && country.isBase) {
-        final bounds = path.getBounds();
-        final center = bounds.center;
+        // Gold stroke with glow effect for bases
+        const baseColor = Colors.amber;
 
-        final textPainter = TextPainter(
-          text: TextSpan(
-            text: String.fromCharCode(Icons.star.codePoint),
-            style: TextStyle(
-                fontSize: 24, // Slightly larger for visibility
-                fontFamily: Icons.star.fontFamily,
-                color: Colors.amber,
-                package: Icons.star.fontPackage),
-          ),
-          textDirection: TextDirection.ltr,
-        );
-        textPainter.layout();
-        textPainter.paint(canvas,
-            center - Offset(textPainter.width / 2, textPainter.height / 2));
+        // Draw outer glow
+        final glowPaint = Paint()
+          ..color = baseColor.withOpacity(0.4)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 6.0
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
+        canvas.drawPath(path, glowPaint);
+
+        // Draw solid gold border
+        final strokePaint = Paint()
+          ..color = baseColor
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.5
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round;
+        canvas.drawPath(path, strokePaint);
       }
     }
   }

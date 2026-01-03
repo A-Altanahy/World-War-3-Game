@@ -403,6 +403,235 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     );
   }
 
+  void _showSaveSlotPicker(BuildContext context) async {
+    final storage = GameStorageService();
+    final slots = await storage.getSlotsMetadata();
+    const int maxSlots = 5;
+
+    if (!context.mounted) return;
+
+    showDialog(
+      context: context,
+      barrierColor: Colors.black87,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              child: CommandCard(
+                width: 400,
+                height: 450,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'حفظ اللعبة',
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: AppTheme.textPrimary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppTheme.primaryNeon),
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: AppTheme.primaryNeon,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'اختر فتحة للحفظ',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppTheme.textMuted,
+                          ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Slots list
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: maxSlots,
+                        itemBuilder: (context, index) {
+                          final slotId = index + 1;
+                          final metadata = slots[slotId];
+                          final isOccupied = metadata != null;
+
+                          return Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: isOccupied
+                                    ? AppTheme.accentOrange.withOpacity(0.5)
+                                    : AppTheme.primaryNeon.withOpacity(0.3),
+                              ),
+                              color: isOccupied
+                                  ? AppTheme.accentOrange.withOpacity(0.1)
+                                  : AppTheme.primaryNeon.withOpacity(0.05),
+                            ),
+                            child: ListTile(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 4),
+                              leading: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: isOccupied
+                                      ? AppTheme.accentOrange.withOpacity(0.2)
+                                      : AppTheme.primaryNeon.withOpacity(0.1),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    '$slotId',
+                                    style: TextStyle(
+                                      color: isOccupied
+                                          ? AppTheme.accentOrange
+                                          : AppTheme.primaryNeon,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                isOccupied ? metadata.saveName : 'فتحة فارغة',
+                                style: TextStyle(
+                                  color: isOccupied
+                                      ? Colors.white
+                                      : Colors.white.withOpacity(0.5),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: isOccupied
+                                  ? Text(
+                                      '${metadata.teamCount} فرق • ${metadata.countryCount} دولة',
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.5),
+                                        fontSize: 12,
+                                      ),
+                                    )
+                                  : null,
+                              trailing: isOccupied
+                                  ? IconButton(
+                                      icon: const Icon(Icons.delete_outline,
+                                          color: AppTheme.warningRed),
+                                      onPressed: () async {
+                                        await storage.clearSlot(slotId);
+                                        final newSlots =
+                                            await storage.getSlotsMetadata();
+                                        setState(() {
+                                          slots.clear();
+                                          slots.addAll(newSlots);
+                                        });
+                                      },
+                                    )
+                                  : const Icon(Icons.add,
+                                      color: AppTheme.primaryNeon),
+                              onTap: () async {
+                                // Show name input dialog
+                                final existingName =
+                                    metadata?.saveName ?? 'حفظ $slotId';
+                                final controller =
+                                    TextEditingController(text: existingName);
+
+                                final saveName = await showDialog<String>(
+                                  context: context,
+                                  builder: (dialogCtx) => AlertDialog(
+                                    backgroundColor: AppTheme.surfaceDark,
+                                    title: const Text('اسم الحفظ',
+                                        style: TextStyle(color: Colors.white)),
+                                    content: TextField(
+                                      controller: controller,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
+                                        hintText: 'أدخل اسم الحفظ',
+                                        hintStyle: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.3)),
+                                        enabledBorder:
+                                            const UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: AppTheme.primaryNeon),
+                                        ),
+                                        focusedBorder:
+                                            const UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: AppTheme.primaryNeon,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      autofocus: true,
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(dialogCtx),
+                                        child: const Text('إلغاء'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            dialogCtx, controller.text),
+                                        child: const Text('حفظ',
+                                            style: TextStyle(
+                                                color: AppTheme.primaryNeon)),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+                                if (saveName == null || saveName.isEmpty)
+                                  return;
+
+                                final gameState = Provider.of<GameState>(
+                                    this.context,
+                                    listen: false);
+                                await storage.saveGame(gameState, slotId,
+                                    saveName: saveName);
+                                if (this.context.mounted) {
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(this.context)
+                                      .showSnackBar(
+                                    const SnackBar(
+                                      content: Text('تم حفظ اللعبة بنجاح!'),
+                                      backgroundColor: AppTheme.primaryNeon,
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBackground(
@@ -713,21 +942,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
           const SizedBox(height: 12),
           FloatingActionButton(
             heroTag: "save",
-            onPressed: () async {
-              final gameState = Provider.of<GameState>(context, listen: false);
-              final storage = GameStorageService();
-              await storage.saveGame(gameState, widget.slotId);
-
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('تم حفظ اللعبة بنجاح!'),
-                    backgroundColor: AppTheme.primaryNeon,
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
-            },
+            onPressed: () => _showSaveSlotPicker(context),
             backgroundColor: AppTheme.surfaceDark,
             child: const Icon(
               Icons.save,
@@ -738,7 +953,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
           FloatingActionButton(
             heroTag: "exit",
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             backgroundColor: AppTheme.warningRed,
             child: const Icon(

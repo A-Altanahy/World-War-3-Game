@@ -2,14 +2,15 @@
 
 import 'package:custom_risk/game_state.dart';
 import 'package:custom_risk/models/country.dart';
+import 'package:custom_risk/models/country_configuration.dart';
 import 'package:custom_risk/models/team.dart';
 import 'package:custom_risk/services/question_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'map_page.dart';
-import 'services/game_storage_service.dart';
 import '../models/country_positions.dart'; // Import the country positions
+import '../widgets/vector_map.dart';
 
 class SetupPage extends StatefulWidget {
   const SetupPage({super.key});
@@ -34,10 +35,9 @@ class _SetupPageState extends State<SetupPage> {
     Colors.cyan,
   ];
 
-  // List to hold initial countries
-  List<Country> _initialCountries = [];
-
-  bool _hasSaveGame = false;
+  // List to hold available maps
+  List<CountryConfiguration> _availableMaps = [];
+  int _selectedMapIndex = 0;
 
   @override
   void initState() {
@@ -49,56 +49,36 @@ class _SetupPageState extends State<SetupPage> {
               name: '',
               color: defaultColors[index % defaultColors.length],
             )));
-    // Initialize countries from country_positions.dart
-    _initialCountries = getInitialCountries();
-    _checkForSaveGame();
+
+    // Initialize available maps
+    _initializeMaps();
   }
 
-  Future<void> _checkForSaveGame() async {
-    final storage = GameStorageService();
-    final hasSave = await storage.hasSaveGame(1);
-    if (mounted) {
-      setState(() {
-        _hasSaveGame = hasSave;
-      });
-    }
-  }
+  void _initializeMaps() {
+    // Map 1: Full World (42 Countries)
+    final fullMapCountries = getInitialCountries(count: 42);
+    final fullMap = CountryConfiguration(
+      id: 'full_map_42',
+      name: 'العالم الكامل (42 دولة)',
+      countries: fullMapCountries,
+      createdAt: DateTime.now(),
+      lastModified: DateTime.now(),
+      interactiveMapAsset: 'assets/original_full_map(42).svg',
+    );
 
-  Future<void> _continueGame() async {
-    final storage = GameStorageService();
-    final json = await storage.loadGame(1);
+    // Map 2: Quick World (20 Countries)
+    // Note: ensure getQuickMapCountries returns correct IDs matching the SVG
+    final quickMapCountries = getQuickMapCountries();
+    final quickMap = CountryConfiguration(
+      id: 'quick_map_20',
+      name: 'معركة سريعة (20 دولة)',
+      countries: quickMapCountries,
+      createdAt: DateTime.now(),
+      lastModified: DateTime.now(),
+      interactiveMapAsset: 'assets/original_map(20).svg',
+    );
 
-    if (json != null && mounted) {
-      // Initialize GameState with placeholders, then restore
-      QuestionService questionService = QuestionService();
-      await questionService.initialize();
-
-      // We need to initialize with some empty data first
-      // The restoreState method will handle clearing and repopulating
-      GameState gameState = GameState(
-        teams: [],
-        countries: _initialCountries
-            .map((c) => Country(
-                id: c.id,
-                name: c.name,
-                normalizedPosition: c.normalizedPosition))
-            .toList(),
-        questionService: questionService,
-      );
-
-      gameState.restoreState(json);
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<GameState>.value(
-            value: gameState,
-            child: const MapPage(
-                slotId: 1, mapAsset: 'assets/original_full_map(42).svg'),
-          ),
-        ),
-      );
-    }
+    _availableMaps = [fullMap, quickMap];
   }
 
   @override
@@ -163,12 +143,15 @@ class _SetupPageState extends State<SetupPage> {
 
   void _proceedToMap() async {
     if (_formKey.currentState!.validate()) {
-      // Assign the loaded countries
-      List<Country> initialCountries = _initialCountries.map((country) {
+      // Assign the selected map's countries
+      final selectedMap = _availableMaps[_selectedMapIndex];
+      // Create fresh copies of countries to avoid state pollution between games
+      List<Country> initialCountries = selectedMap.countries.map((country) {
         return Country(
           id: country.id,
           name: country.name,
           normalizedPosition: country.normalizedPosition,
+          svgId: country.svgId, // Ensure SVG ID is passed
         );
       }).toList();
 
@@ -180,6 +163,8 @@ class _SetupPageState extends State<SetupPage> {
         teams: _teams,
         countries: initialCountries,
         questionService: questionService,
+        mapAsset: selectedMap.interactiveMapAsset ??
+            'assets/original_full_map(42).svg',
       );
 
       Navigator.pushReplacement(
@@ -187,7 +172,7 @@ class _SetupPageState extends State<SetupPage> {
         MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider<GameState>.value(
             value: gameState,
-            child: const MapPage(mapAsset: 'assets/original_full_map(42).svg'),
+            child: MapPage(mapAsset: gameState.mapAsset),
           ),
         ),
       );
@@ -208,36 +193,188 @@ class _SetupPageState extends State<SetupPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (_hasSaveGame) ...[
-                    const SizedBox(height: 40),
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        width: double.infinity,
-                        child: ElevatedButton.icon(
-                          onPressed: _continueGame,
-                          icon: const Icon(Icons.play_arrow),
-                          label: const Text('اكمال اللعبة السابقة'),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                            textStyle: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Divider(thickness: 1, color: Colors.grey),
-                  ],
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
+
                   Center(
                     child: Text(
-                      'إعداد الفرق (لعبة جديدة)',
+                      'إعداد لعبة جديدة',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
+                  const SizedBox(height: 30),
+
+                  // 1. Map Selection
+                  Text(
+                    'اختر الخريطة:',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 16),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      // Calculate card size based on available width
+                      final cardWidth = (constraints.maxWidth - 16) / 2;
+                      final cardHeight =
+                          cardWidth * 0.8; // Slightly shorter than square
+
+                      return Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: _availableMaps.asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final map = entry.value;
+                          final isSelected = _selectedMapIndex == index;
+
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedMapIndex = index;
+                              });
+                            },
+                            child: Container(
+                              width: cardWidth,
+                              height: cardHeight,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.white24,
+                                  width: isSelected ? 2 : 1,
+                                ),
+                                color: Colors.black26,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(14),
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    // Map Preview using VectorMap
+                                    if (map.interactiveMapAsset != null)
+                                      Positioned.fill(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 50),
+                                          child: VectorMap(
+                                            mapAsset: map.interactiveMapAsset!,
+                                            countries: map.countries,
+                                            onCountryTap:
+                                                (_) {}, // No-op for preview
+                                          ),
+                                        ),
+                                      ),
+                                    // Info overlay at bottom
+                                    Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.black.withOpacity(0.8),
+                                            ],
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            // Country count badge
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 4),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    '${map.countries.length}',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 4),
+                                                  const Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.white,
+                                                    size: 14,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            // Map name
+                                            Expanded(
+                                              flex: 2,
+                                              child: Text(
+                                                map.name,
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    // Selection indicator
+                                    if (isSelected)
+                                      Positioned(
+                                        top: 8,
+                                        right: 8,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: const Icon(
+                                            Icons.check,
+                                            color: Colors.white,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 30),
+                  const Divider(),
                   const SizedBox(height: 20),
+
+                  // 2. Team Setup
+                  Center(
+                    child: Text(
+                      'إعداد الفرق',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
                   // Team Count Selector
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -286,6 +423,8 @@ class _SetupPageState extends State<SetupPage> {
                               const SizedBox(height: 10),
                               // Team Name
                               TextFormField(
+                                initialValue: _teams[index]
+                                    .name, // Preserve value on rebuilds
                                 decoration: const InputDecoration(
                                   labelText: 'اسم الفريق',
                                   border: OutlineInputBorder(),
@@ -304,7 +443,6 @@ class _SetupPageState extends State<SetupPage> {
                                 },
                                 onChanged: (value) {
                                   _teams[index].name = value;
-                                  print('Team ${index + 1} name set to $value');
                                 },
                               ),
                               const SizedBox(height: 10),
@@ -348,9 +486,10 @@ class _SetupPageState extends State<SetupPage> {
                             horizontal: 50, vertical: 15),
                         textStyle: const TextStyle(fontSize: 18),
                       ),
-                      child: const Text('التالي'),
+                      child: const Text('بداية اللعبة'),
                     ),
                   ),
+                  const SizedBox(height: 40),
                 ],
               ),
             ),

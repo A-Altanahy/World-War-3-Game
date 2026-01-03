@@ -81,7 +81,7 @@ class _ConfigurationSelectionPageState extends State<ConfigurationSelectionPage>
                           child: _buildWarButton(
                             title: 'استكمال المعركة',
                             subtitle: 'CONTINUE WAR',
-                            icon: Icons.history_edu, // Something epic
+                            icon: Icons.history_edu,
                             color: AppTheme.accentOrange,
                             onTap: () {
                               Navigator.push(

@@ -275,11 +275,21 @@ List<Country> getQuickMapCountries() {
 
   return quickMapData.asMap().entries.map((entry) {
     var data = entry.value;
+    // Map IDs match the SVG "Vector" naming convention
+    // First one is "Vector", subsequent are "Vector_2", "Vector_3", etc.
+    // entry.key is 0-indexed.
+    String svgId;
+    if (entry.key == 0) {
+      svgId = 'Vector';
+    } else {
+      svgId = 'Vector_${entry.key + 1}';
+    }
+
     return Country(
       id: (entry.key + 100).toString(),
       name: data['name'],
       normalizedPosition: data['pos'],
-      svgId: 'Country${entry.key + 1}',
+      svgId: svgId,
     );
   }).toList();
 }

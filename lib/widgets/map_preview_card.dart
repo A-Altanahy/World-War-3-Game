@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../models/country_configuration.dart';
 import '../theme/app_theme.dart';
 
@@ -86,13 +87,22 @@ class _MapPreviewCardState extends State<MapPreviewCard>
                   borderRadius: BorderRadius.circular(16),
                   child: Stack(
                     children: [
-                      // Background / Procedural Map Pattern
+                      // Background - Actual SVG Map Preview
                       Positioned.fill(
-                        child: CustomPaint(
-                          painter: ProceduralMapPainter(
-                            seed: widget.config.id.hashCode,
-                            primaryColor: AppTheme.primaryNeon,
-                          ),
+                        child: Container(
+                          color: AppTheme.surfaceDark,
+                          padding: const EdgeInsets.all(16),
+                          child: widget.config.interactiveMapAsset != null
+                              ? SvgPicture.asset(
+                                  widget.config.interactiveMapAsset!,
+                                  fit: BoxFit.contain,
+                                )
+                              : CustomPaint(
+                                  painter: ProceduralMapPainter(
+                                    seed: widget.config.id.hashCode,
+                                    primaryColor: AppTheme.primaryNeon,
+                                  ),
+                                ),
                         ),
                       ),
 

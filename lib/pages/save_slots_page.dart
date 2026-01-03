@@ -7,6 +7,8 @@ import '../services/game_storage_service.dart';
 import '../services/question_service.dart';
 import '../game_state.dart';
 import '../map_page.dart';
+import '../models/country.dart';
+import '../models/country_positions.dart';
 
 class SaveSlotsPage extends StatefulWidget {
   const SaveSlotsPage({super.key});
@@ -49,36 +51,60 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
         final questionService = QuestionService();
         await questionService.initialize();
 
+        // Determine map type from saved data
+        bool is20Map = false;
+
+        try {
+          final countriesList = gameStateMap['countries'] as List;
+          if (countriesList.isNotEmpty) {
+            is20Map = countriesList.any((c) {
+              final id = int.tryParse(c['id'].toString()) ?? 0;
+              return id >= 100;
+            });
+          }
+        } catch (e) {
+          print('Error detecting map type: $e');
+        }
+
+        List<Country> baseCountries;
+        String determinedMapAsset;
+
+        if (is20Map) {
+          determinedMapAsset = 'assets/original_map(20).svg';
+          baseCountries = getQuickMapCountries();
+        } else {
+          determinedMapAsset = 'assets/original_full_map(42).svg';
+          baseCountries = getInitialCountries(count: 42);
+        }
+
         final gameState = GameState(
           teams: [],
-          countries: [],
+          countries: baseCountries,
           questionService: questionService,
+          mapAsset: determinedMapAsset,
         );
 
         gameState.restoreState(gameStateMap);
 
-        // Pass the slot ID to the GameState or manage it globally so next save uses same slot
-        // For now, we assumption verification of loading is key.
-        // TODO: Ensure MapPage knows current slot to save back to it.
-
         if (mounted) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider.value(
                 value: gameState,
                 child: MapPage(
-                    slotId: slotId,
-                    mapAsset: 'assets/original_full_map(42).svg'),
+                  slotId: slotId,
+                  mapAsset: determinedMapAsset,
+                ),
               ),
             ),
-          ).then((_) => _loadSlots());
+          );
         }
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to load game')),
+          const SnackBar(content: Text('فشل تحميل اللعبة')),
         );
       }
     } finally {
@@ -87,17 +113,84 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
   }
 
   Future<void> _deleteSlot(int slotId) async {
-    await _storageService.clearSlot(slotId);
-    _loadSlots();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.surfaceDark,
+        title: const Text('حذف الحفظ', style: TextStyle(color: Colors.white)),
+        content: const Text(
+          'هل أنت متأكد من حذف هذا الحفظ؟',
+          style: TextStyle(color: Colors.white70),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('إلغاء'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(foregroundColor: AppTheme.warningRed),
+            child: const Text('حذف'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      await _storageService.clearSlot(slotId);
+      _loadSlots();
+    }
+  }
+
+  Future<void> _renameSlot(int slotId, String currentName) async {
+    final controller = TextEditingController(text: currentName);
+
+    final newName = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.surfaceDark,
+        title: const Text('تغيير اسم الحفظ',
+            style: TextStyle(color: Colors.white)),
+        content: TextField(
+          controller: controller,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            hintText: 'اسم الحفظ',
+            hintStyle: TextStyle(color: Colors.white.withOpacity(0.3)),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: AppTheme.primaryNeon),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: AppTheme.primaryNeon, width: 2),
+            ),
+          ),
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('إلغاء'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, controller.text),
+            child: const Text('حفظ',
+                style: TextStyle(color: AppTheme.primaryNeon)),
+          ),
+        ],
+      ),
+    );
+
+    if (newName != null && newName.isNotEmpty) {
+      await _storageService.renameSave(slotId, newName);
+      _loadSlots();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          AppTheme.darkBackground, // Ensure consistency if transparent
+      backgroundColor: Colors.transparent,
       body: Container(
-        // For bg image or gradient
         decoration: const BoxDecoration(
           gradient: AppTheme.backgroundGradient,
         ),
@@ -110,7 +203,9 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
                     ? const Center(
                         child: CircularProgressIndicator(
                             color: AppTheme.primaryNeon))
-                    : _buildSlotsList(),
+                    : _slots.isEmpty
+                        ? _buildEmptyState()
+                        : _buildSlotsList(),
               ),
             ],
           ),
@@ -129,111 +224,165 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
             onPressed: () => Navigator.pop(context),
           ),
           const SizedBox(width: 16),
-          Text(
-            'اختر ملف الحفظ',
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+          Expanded(
+            child: Text(
+              'استكمال المعركة',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),
     );
   }
 
+  Widget _buildEmptyState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.save_outlined,
+              size: 64,
+              color: Colors.white.withOpacity(0.3),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'لا توجد ألعاب محفوظة',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.5),
+                fontSize: 18,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'ابدأ معركة جديدة واحفظها للمتابعة لاحقاً',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.3),
+                fontSize: 14,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildSlotsList() {
+    final sortedSlots = _slots.entries.toList()
+      ..sort((a, b) => b.value.lastPlayed.compareTo(a.value.lastPlayed));
+
     return ListView.builder(
-      padding: const EdgeInsets.all(24),
-      itemCount: 3, // Fixed 3 slots
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      itemCount: sortedSlots.length,
       itemBuilder: (context, index) {
-        final slotId = index + 1;
-        final metadata = _slots[slotId];
-        return _buildSlotCard(slotId, metadata);
+        final entry = sortedSlots[index];
+        return _buildSlotCard(entry.key, entry.value);
       },
     );
   }
 
-  Widget _buildSlotCard(int slotId, SaveSlotMetadata? metadata) {
-    bool isOccupied = metadata != null;
-
+  Widget _buildSlotCard(int slotId, SaveSlotMetadata metadata) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 12.0),
       child: CommandCard(
-        height: 120,
-        onTap: isOccupied ? () => _loadGame(slotId) : null,
-        glowColor: isOccupied ? AppTheme.primaryNeon : Colors.grey,
+        height: 100,
+        margin: EdgeInsets.zero,
+        padding: EdgeInsets.zero,
+        onTap: () => _loadGame(slotId),
+        glowColor: AppTheme.accentOrange,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
           child: Row(
             children: [
-              // Slot Number / Icon
+              // Slot Icon
               Container(
-                width: 60,
-                height: 60,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isOccupied ? AppTheme.primaryNeon : Colors.white24,
-                    width: 2,
-                  ),
-                  color: isOccupied
-                      ? AppTheme.primaryNeon.withOpacity(0.1)
-                      : Colors.transparent,
+                  border: Border.all(color: AppTheme.accentOrange, width: 2),
+                  color: AppTheme.accentOrange.withOpacity(0.1),
                 ),
-                child: Center(
-                  child: Text(
-                    '$slotId',
-                    style: TextStyle(
-                      color: isOccupied ? AppTheme.primaryNeon : Colors.white24,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                child: const Center(
+                  child: Icon(
+                    Icons.save,
+                    color: AppTheme.accentOrange,
+                    size: 24,
                   ),
                 ),
               ),
-              const SizedBox(width: 24),
+              const SizedBox(width: 16),
 
               // Info
               Expanded(
-                child: isOccupied
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'حفظ تلقائي $slotId', // Could allow custom names later
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            '${metadata.teamCount} فرق • ${metadata.countryCount} دولة • ${_formatDate(metadata.lastPlayed)}',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.7),
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      )
-                    : Text(
-                        'فتحة فارغة',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.3),
-                          fontSize: 18,
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      metadata.saveName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      '${metadata.teamCount} فرق • ${metadata.countryCount} دولة',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 11,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      _formatDate(metadata.lastPlayed),
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.5),
+                        fontSize: 10,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
 
-              // Actions
-              if (isOccupied)
-                IconButton(
-                  icon: const Icon(Icons.delete_outline,
-                      color: AppTheme.warningRed),
-                  onPressed: () => _deleteSlot(slotId),
-                ),
+              const SizedBox(width: 8),
+
+              // Action Buttons - constrained row
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit_outlined,
+                        color: AppTheme.primaryNeon, size: 20),
+                    onPressed: () => _renameSlot(slotId, metadata.saveName),
+                    padding: EdgeInsets.zero,
+                    constraints:
+                        const BoxConstraints(minWidth: 36, minHeight: 36),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete_outline,
+                        color: AppTheme.warningRed, size: 20),
+                    onPressed: () => _deleteSlot(slotId),
+                    padding: EdgeInsets.zero,
+                    constraints:
+                        const BoxConstraints(minWidth: 36, minHeight: 36),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -242,6 +391,6 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
   }
 
   String _formatDate(DateTime date) {
-    return '${date.day}/${date.month} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
+    return '${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
   }
 }

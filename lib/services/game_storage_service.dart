@@ -13,7 +13,8 @@ class GameStorageService {
   }
 
   // Save the current game state to a specific slot
-  Future<void> saveGame(GameState gameState, int slotId) async {
+  Future<void> saveGame(GameState gameState, int slotId,
+      {String? saveName}) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonString = jsonEncode(gameState.toJson());
 
@@ -21,7 +22,7 @@ class GameStorageService {
     await prefs.setString('${_storageKeyPrefix}$slotId', jsonString);
 
     // Update metadata
-    await _updateSlotMetadata(slotId, gameState);
+    await _updateSlotMetadata(slotId, gameState, customName: saveName);
   }
 
   // Load the game state from a specific slot
@@ -65,12 +66,31 @@ class GameStorageService {
     await _removeSlotMetadata(slotId);
   }
 
-  // Private helper to update metadata
-  Future<void> _updateSlotMetadata(int slotId, GameState gameState) async {
+  // Rename a save slot
+  Future<void> renameSave(int slotId, String newName) async {
     final prefs = await SharedPreferences.getInstance();
     final metadata = await getSlotsMetadata();
 
+    if (metadata.containsKey(slotId)) {
+      metadata[slotId] = metadata[slotId]!.copyWith(saveName: newName);
+      final jsonMap = metadata
+          .map((key, value) => MapEntry(key.toString(), value.toJson()));
+      await prefs.setString(_metadataKey, jsonEncode(jsonMap));
+    }
+  }
+
+  // Private helper to update metadata
+  Future<void> _updateSlotMetadata(int slotId, GameState gameState,
+      {String? customName}) async {
+    final prefs = await SharedPreferences.getInstance();
+    final metadata = await getSlotsMetadata();
+
+    // Use custom name if provided, otherwise use existing name or default
+    final existingMetadata = metadata[slotId];
+    final saveName = customName ?? existingMetadata?.saveName ?? 'حفظ $slotId';
+
     metadata[slotId] = SaveSlotMetadata(
+      saveName: saveName,
       lastPlayed: DateTime.now(),
       teamCount: gameState.teams.length,
       countryCount: gameState.countries.length,
@@ -95,12 +115,14 @@ class GameStorageService {
 }
 
 class SaveSlotMetadata {
+  final String saveName;
   final DateTime lastPlayed;
   final int teamCount;
   final int countryCount;
   final int turnCount;
 
   SaveSlotMetadata({
+    required this.saveName,
     required this.lastPlayed,
     required this.teamCount,
     required this.countryCount,
@@ -108,6 +130,7 @@ class SaveSlotMetadata {
   });
 
   Map<String, dynamic> toJson() => {
+        'saveName': saveName,
         'lastPlayed': lastPlayed.toIso8601String(),
         'teamCount': teamCount,
         'countryCount': countryCount,
@@ -116,10 +139,21 @@ class SaveSlotMetadata {
 
   factory SaveSlotMetadata.fromJson(Map<String, dynamic> json) {
     return SaveSlotMetadata(
+      saveName: json['saveName'] ?? 'حفظ',
       lastPlayed: DateTime.parse(json['lastPlayed']),
       teamCount: json['teamCount'],
       countryCount: json['countryCount'],
       turnCount: json['turnCount'],
+    );
+  }
+
+  SaveSlotMetadata copyWith({String? saveName}) {
+    return SaveSlotMetadata(
+      saveName: saveName ?? this.saveName,
+      lastPlayed: lastPlayed,
+      teamCount: teamCount,
+      countryCount: countryCount,
+      turnCount: turnCount,
     );
   }
 }

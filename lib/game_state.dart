@@ -12,10 +12,15 @@ class GameState with ChangeNotifier {
   Team? selectedTeam; // Currently selected team
   int currentTeamIndex = 0;
 
+  // Persist the map asset used for this game
+  final String mapAsset;
+
   GameState({
     required this.teams,
     required this.countries,
     required this.questionService,
+    this.mapAsset =
+        'assets/original_full_map(42).svg', // Default for backward compatibility
   });
 
   // Method to select a team
@@ -131,6 +136,7 @@ class GameState with ChangeNotifier {
         return json;
       }).toList(),
       'phase': _phase.index,
+      'mapAsset': mapAsset,
     };
   }
 
