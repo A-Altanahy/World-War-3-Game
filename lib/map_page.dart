@@ -687,9 +687,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                     // Using 'original_full_map(42).svg' as default based on updated data
                     Positioned.fill(
                       child: VectorMap(
-                        mapAsset: gameState.countries.length == 20
-                            ? 'assets/original_map(20).svg'
-                            : 'assets/original_full_map(42).svg',
+                        mapAsset: widget.mapAsset,
                         countries: gameState.countries,
                         onCountryTap: (country) =>
                             _onCountryTap(context, country),

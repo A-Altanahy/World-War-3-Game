@@ -873,6 +873,7 @@ class _QuestionDialogState extends State<QuestionDialog>
   }
 
   void _selectCategory(QuestionCategory category) {
+    if (isLoading) return;
     setState(() {
       selectedCategory = category;
       isLoading = true;

@@ -178,4 +178,28 @@ class QuestionService {
 
     return stats;
   }
+
+  /// Restore question states from JSON (for loading saved game)
+  void restoreQuestionStates(List<dynamic> statesJson) {
+    if (statesJson.isEmpty) return;
+
+    print('QuestionService: Restoring ${statesJson.length} question states...');
+
+    for (var json in statesJson) {
+      try {
+        final state = QuestionState.fromJson(json);
+        final index =
+            _questionStates.indexWhere((s) => s.questionId == state.questionId);
+
+        if (index != -1) {
+          _questionStates[index] = state;
+        } else {
+          // If for some reason the question doesn't exist in current list, add it
+          _questionStates.add(state);
+        }
+      } catch (e) {
+        print('QuestionService: Error restoring state: $e');
+      }
+    }
+  }
 }

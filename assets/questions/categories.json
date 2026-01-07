@@ -7,16 +7,28 @@
             "color": "#2196F3"
         },
         {
-            "id": "guess_person",
-            "name": "خمن الشخص",
-            "description": "خمن من هو الشخص في الصورة",
-            "color": "#FF9800"
-        },
-        {
             "id": "from_eye",
             "name": "من عينه",
             "description": "أسئلة من وجهة نظر الشخص",
             "color": "#9C27B0"
+        },
+        {
+            "id": "general_text",
+            "name": "أسئلة عامة",
+            "description": "أسئلة وتحديات نصية",
+            "color": "#4CAF50"
+        },
+        {
+            "id": "islamic",
+            "name": "أسئلة دينية",
+            "description": "أسئلة دينية وثقافية",
+            "color": "#009688"
+        },
+        {
+            "id": "math",
+            "name": "رياضيات",
+            "description": "أسئلة رياضية",
+            "color": "#FF9800"
         }
     ]
 }

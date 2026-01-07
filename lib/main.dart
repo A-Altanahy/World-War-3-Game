@@ -264,5 +264,3 @@ class _CommandCenterLandingState extends State<CommandCenterLanding>
     );
   }
 }
-
-

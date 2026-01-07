@@ -137,6 +137,8 @@ class GameState with ChangeNotifier {
       }).toList(),
       'phase': _phase.index,
       'mapAsset': mapAsset,
+      'questionStates':
+          questionService.questionStates.map((s) => s.toJson()).toList(),
     };
   }
 
@@ -150,16 +152,35 @@ class GameState with ChangeNotifier {
 
     // 2. Restore Countries
     final countriesList = (json['countries'] as List);
+    print('RestoreState: Processing ${countriesList.length} saved countries');
+
+    int matchedCount = 0;
     for (var countryJson in countriesList) {
       final countryId = countryJson['id'];
-      final country = countries.firstWhere((c) => c.id == countryId,
-          orElse: () => Country(
-              id: 'unknown', name: 'Unknown', normalizedPosition: Offset.zero));
 
-      if (country.id != 'unknown') {
+      // Try to find the country
+      Country? country;
+      try {
+        country = countries.firstWhere((c) => c.id == countryId.toString());
+      } catch (e) {
+        country = null;
+      }
+
+      if (country != null) {
+        matchedCount++;
         // Update stats
         country.isBase = countryJson['isBase'] ?? false;
-        country.captureBonus = countryJson['captureBonus'] ?? 0;
+
+        // Restore troops count logic
+        // Troops are calculated as (isBase ? 1000 : 200) + captureBonus
+        // So we need to reverse calculate the captureBonus to match the saved troops
+        int savedTroops = countryJson['troops'] ?? 0;
+        int baseValue = country.isBase ? 1000 : 200;
+        if (savedTroops > 0) {
+          country.captureBonus = savedTroops - baseValue;
+        } else {
+          country.captureBonus = countryJson['captureBonus'] ?? 0;
+        }
 
         // Restore owner
         final ownerName = countryJson['ownerName'];
@@ -167,17 +188,30 @@ class GameState with ChangeNotifier {
           try {
             country.owner = teams.firstWhere((t) => t.name == ownerName);
           } catch (e) {
+            print(
+                'RestoreState: Warning - Team $ownerName not found for country $countryId');
             country.owner = null;
           }
         } else {
           country.owner = null;
         }
+      } else {
+        // Debug log for first few mismatches?
+        // print('RestoreState: Could not find country with ID: $countryId in current map');
       }
     }
+    print(
+        'RestoreState: Successfully matched $matchedCount out of ${countriesList.length} saved records against ${countries.length} game countries.');
 
     // 3. Restore Phase
     final phaseIndex = json['phase'] ?? 0;
     _phase = GamePhase.values[phaseIndex];
+
+    // 4. Restore Question States
+    if (json.containsKey('questionStates')) {
+      final questionStates = json['questionStates'] as List;
+      questionService.restoreQuestionStates(questionStates);
+    }
 
     notifyListeners();
   }

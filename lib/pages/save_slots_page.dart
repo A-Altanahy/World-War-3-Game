@@ -52,26 +52,51 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
         await questionService.initialize();
 
         // Determine map type from saved data
+        // Determine map type from saved data
         bool is20Map = false;
-
+        List countriesList = [];
         try {
-          final countriesList = gameStateMap['countries'] as List;
-          if (countriesList.isNotEmpty) {
-            is20Map = countriesList.any((c) {
-              final id = int.tryParse(c['id'].toString()) ?? 0;
-              return id >= 100;
-            });
-          }
+          countriesList = gameStateMap['countries'] as List;
         } catch (e) {
-          print('Error detecting map type: $e');
+          print('Error reading countries list: $e');
         }
+
+        // 1. Check explicitly saved mapAsset (Preferred)
+        if (gameStateMap.containsKey('mapAsset')) {
+          final savedMapAsset = gameStateMap['mapAsset'] as String;
+          print('Loading Game: Found mapAsset: $savedMapAsset'); // Debug log
+          if (savedMapAsset.contains('(20)')) {
+            is20Map = true;
+          }
+        }
+
+        // 2. Fallback: Check country count (Robust)
+        // Note: The "20 country" map actually has 16 defined countries in code.
+        // We allow a small range to account for potential variations or miscounting.
+        if (!is20Map && countriesList.isNotEmpty) {
+          if (countriesList.length >= 15 && countriesList.length <= 22) {
+            print(
+                'Loading Game: Detected Quick Map by count (${countriesList.length}). forcing is20Map = true');
+            is20Map = true;
+          }
+        }
+
+        // 3. Fallback: Check IDs (Legacy)
+        if (!is20Map && countriesList.isNotEmpty) {
+          is20Map = countriesList.any((c) {
+            final id = int.tryParse(c['id'].toString()) ?? 0;
+            return id >= 100;
+          });
+        }
+
+        print('Loading Game: is20Map = $is20Map');
 
         List<Country> baseCountries;
         String determinedMapAsset;
 
         if (is20Map) {
           determinedMapAsset = 'assets/original_map(20).svg';
-          baseCountries = getQuickMapCountries();
+          baseCountries = getInitialCountries(count: 20);
         } else {
           determinedMapAsset = 'assets/original_full_map(42).svg';
           baseCountries = getInitialCountries(count: 42);

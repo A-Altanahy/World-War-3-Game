@@ -3,190 +3,554 @@
     {
       "id": "general_001",
       "categoryId": "general",
-      "imagePath": "images/global/lemon.jpg",
-      "answerText": "ليمون",
-      "difficulty": 1
+      "imagePath": "images/global/أوبر.jpeg",
+      "answerText": "أوبر",
+      "difficulty": 2
     },
     {
       "id": "general_002",
       "categoryId": "general",
-      "imagePath": "images/global/iceland.jpg",
-      "answerText": "ايسلاند",
+      "imagePath": "images/global/ابن بطوطة.jpeg",
+      "answerText": "ابن بطوطة",
       "difficulty": 2
     },
     {
       "id": "general_003",
       "categoryId": "general",
-      "imagePath": "images/global/5g.jpg",
-      "answerText": "5g",
+      "imagePath": "images/global/استنفار.jpeg",
+      "answerText": "استنفار",
       "difficulty": 2
     },
     {
       "id": "general_004",
       "categoryId": "general",
-      "imagePath": "images/global/empty_quarter.jpg",
+      "imagePath": "images/global/الربع الخالي.jpeg",
       "answerText": "الربع الخالي",
-      "difficulty": 3
+      "difficulty": 2
     },
     {
       "id": "general_005",
       "categoryId": "general",
-      "imagePath": "images/global/capitalism.jpg",
-      "answerText": "الرأس مالية",
+      "imagePath": "images/global/ايس لاند.jpeg",
+      "answerText": "ايس لاند",
       "difficulty": 2
     },
     {
       "id": "general_006",
       "categoryId": "general",
-      "imagePath": "images/global/samosa.jpg",
-      "answerText": "سمبوسه",
-      "difficulty": 1
+      "imagePath": "images/global/ايكيا.jpeg",
+      "answerText": "ايكيا",
+      "difficulty": 2
     },
     {
       "id": "general_007",
       "categoryId": "general",
-      "imagePath": "images/global/pulled_chicken.jpg",
-      "answerText": "دجاج مسحب",
+      "imagePath": "images/global/برج بيزا.jpeg",
+      "answerText": "برج بيزا",
       "difficulty": 2
     },
     {
       "id": "general_008",
       "categoryId": "general",
-      "imagePath": "images/global/chess.jpg",
-      "answerText": "شطرنج",
-      "difficulty": 1
+      "imagePath": "images/global/بطانية.jpeg",
+      "answerText": "بطانية",
+      "difficulty": 2
     },
     {
       "id": "general_009",
       "categoryId": "general",
-      "imagePath": "images/global/uber.jpg",
-      "answerText": "اوبر",
-      "difficulty": 1
+      "imagePath": "images/global/بوكيمون.jpeg",
+      "answerText": "بوكيمون",
+      "difficulty": 2
     },
     {
       "id": "general_010",
       "categoryId": "general",
-      "imagePath": "images/global/bird.jpg",
-      "answerText": "عصفور",
-      "difficulty": 1
-    },
-    {
-      "id": "general_011",
-      "categoryId": "general",
-      "imagePath": "images/global/carrefour.jpg",
-      "answerText": "كارفور",
-      "difficulty": 1
+      "imagePath": "images/global/تويكس.jpeg",
+      "answerText": "تويكس",
+      "difficulty": 2
     },
     {
       "id": "general_012",
       "categoryId": "general",
-      "imagePath": "images/global/shawarma.jpg",
-      "answerText": "شاورما",
-      "difficulty": 1
+      "imagePath": "images/global/جلمود.jpeg",
+      "answerText": "جلمود",
+      "difficulty": 2
     },
     {
       "id": "general_013",
       "categoryId": "general",
-      "imagePath": "images/global/oyster.jpg",
-      "answerText": "محار",
-      "difficulty": 1
-    },
-    {
-      "id": "person_001",
-      "categoryId": "guess_person",
-      "imagePath": "images/people/omar.jpg",
-      "answerText": "عمر عصام",
+      "imagePath": "images/global/جوز هند.jpeg",
+      "answerText": "جوز هند",
       "difficulty": 2
     },
     {
-      "id": "person_002",
-      "categoryId": "guess_person",
-      "imagePath": "images/people/hamza.jpg",
-      "answerText": "حمزة إمام",
+      "id": "general_014",
+      "categoryId": "general",
+      "imagePath": "images/global/سلمون.jpeg",
+      "answerText": "سلمون",
       "difficulty": 2
     },
     {
-      "id": "person_003",
-      "categoryId": "guess_person",
-      "imagePath": "images/people/Ahmed_Kamel.jpg",
-      "answerText": "أحمد كامل",
+      "id": "general_015",
+      "categoryId": "general",
+      "imagePath": "images/global/شطرنج.jpeg",
+      "answerText": "شطرنج",
       "difficulty": 2
     },
     {
-      "id": "person_004",
-      "categoryId": "guess_person",
-      "imagePath": "images/people/Ayman.jpg",
-      "answerText": "أيمن",
-      "difficulty": 4
+      "id": "general_016",
+      "categoryId": "general",
+      "imagePath": "images/global/صومال.jpeg",
+      "answerText": "صومال",
+      "difficulty": 2
+    },
+    {
+      "id": "general_017",
+      "categoryId": "general",
+      "imagePath": "images/global/عصفور.jpeg",
+      "answerText": "عصفور",
+      "difficulty": 2
+    },
+    {
+      "id": "general_018",
+      "categoryId": "general",
+      "imagePath": "images/global/قرنفل..jpeg",
+      "answerText": "قرنفل.",
+      "difficulty": 2
+    },
+    {
+      "id": "general_019",
+      "categoryId": "general",
+      "imagePath": "images/global/قرنفل.jpeg",
+      "answerText": "قرنفل",
+      "difficulty": 2
+    },
+    {
+      "id": "general_020",
+      "categoryId": "general",
+      "imagePath": "images/global/كأس عالم.jpeg",
+      "answerText": "كأس عالم",
+      "difficulty": 2
+    },
+    {
+      "id": "general_021",
+      "categoryId": "general",
+      "imagePath": "images/global/كرة طائرة.jpeg",
+      "answerText": "كرة طائرة",
+      "difficulty": 2
     },
     {
       "id": "eye_001",
       "categoryId": "from_eye",
-      "imagePath": "images/1q.jpg",
-      "answerImagePath": "images/1a.jpg",
+      "imagePath": "images/1q.jpeg",
+      "answerImagePath": "images/1a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_002",
       "categoryId": "from_eye",
-      "imagePath": "images/2q.jpg",
-      "answerImagePath": "images/2a.jpg",
+      "imagePath": "images/2q.jpeg",
+      "answerImagePath": "images/2a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_003",
       "categoryId": "from_eye",
-      "imagePath": "images/3q.jpg",
-      "answerImagePath": "images/3a.jpg",
+      "imagePath": "images/3q.jpeg",
+      "answerImagePath": "images/3a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_004",
       "categoryId": "from_eye",
-      "imagePath": "images/4q.jpg",
-      "answerImagePath": "images/4a.jpg",
+      "imagePath": "images/4q.jpeg",
+      "answerImagePath": "images/4a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_005",
       "categoryId": "from_eye",
-      "imagePath": "images/5q.jpg",
-      "answerImagePath": "images/5a.jpg",
+      "imagePath": "images/5q.jpeg",
+      "answerImagePath": "images/5a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_006",
       "categoryId": "from_eye",
-      "imagePath": "images/6q.jpg",
-      "answerImagePath": "images/6a.jpg",
+      "imagePath": "images/6q.jpeg",
+      "answerImagePath": "images/6a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_007",
       "categoryId": "from_eye",
-      "imagePath": "images/7q.jpg",
-      "answerImagePath": "images/7a.jpg",
+      "imagePath": "images/7q.jpeg",
+      "answerImagePath": "images/7a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_008",
       "categoryId": "from_eye",
-      "imagePath": "images/8q.jpg",
-      "answerImagePath": "images/8a.jpg",
+      "imagePath": "images/8q.jpeg",
+      "answerImagePath": "images/8a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_009",
       "categoryId": "from_eye",
-      "imagePath": "images/9q.jpg",
-      "answerImagePath": "images/9a.jpg",
+      "imagePath": "images/9q.jpeg",
+      "answerImagePath": "images/9a.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_010",
       "categoryId": "from_eye",
-      "imagePath": "images/10q.jpg",
-      "answerImagePath": "images/10a.jpg",
+      "imagePath": "images/10q.jpeg",
+      "answerImagePath": "images/10a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_011",
+      "categoryId": "from_eye",
+      "imagePath": "images/11q.jpeg",
+      "answerImagePath": "images/11a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_012",
+      "categoryId": "from_eye",
+      "imagePath": "images/12q.jpeg",
+      "answerImagePath": "images/12a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_013",
+      "categoryId": "from_eye",
+      "imagePath": "images/13q.jpeg",
+      "answerImagePath": "images/13a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_014",
+      "categoryId": "from_eye",
+      "imagePath": "images/14q.jpeg",
+      "answerImagePath": "images/14a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_015",
+      "categoryId": "from_eye",
+      "imagePath": "images/15q.jpeg",
+      "answerImagePath": "images/15a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_016",
+      "categoryId": "from_eye",
+      "imagePath": "images/16q.jpeg",
+      "answerImagePath": "images/16a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_017",
+      "categoryId": "from_eye",
+      "imagePath": "images/17q.jpeg",
+      "answerImagePath": "images/17a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "eye_018",
+      "categoryId": "from_eye",
+      "imagePath": "images/18q.jpeg",
+      "answerImagePath": "images/18a.jpeg",
+      "difficulty": 2
+    },
+    {
+      "id": "text_001",
+      "categoryId": "general_text",
+      "text": "ما اسم البحر الذي يفصل بين آسيا وإفريقيا ؟",
+      "answerText": "البحر الأحمر",
+      "difficulty": 2
+    },
+    {
+      "id": "text_002",
+      "categoryId": "general_text",
+      "text": "العضو المسؤول عن عن تنقية الدم في جسم الإنسان ؟",
+      "answerText": "الكلية",
+      "difficulty": 2
+    },
+    {
+      "id": "text_003",
+      "categoryId": "general_text",
+      "text": "من هو اول من جمع القرآن ؟",
+      "answerText": "أبو بكر الصديق",
+      "difficulty": 2
+    },
+    {
+      "id": "text_004",
+      "categoryId": "general_text",
+      "text": "اكبر دولة في العالم من حيث المساحة؟",
+      "answerText": "روسيا",
+      "difficulty": 1
+    },
+    {
+      "id": "text_005",
+      "categoryId": "general_text",
+      "text": "أصغر دولة في العالم من حيث المساحة ؟",
+      "answerText": "الفاتيكان",
+      "difficulty": 4
+    },
+    {
+      "id": "text_006",
+      "categoryId": "general_text",
+      "text": "ما هو أكبر محيط في العالم؟",
+      "answerText": "المحيط الهادئ",
+      "difficulty": 2
+    },
+    {
+      "id": "text_007",
+      "categoryId": "general_text",
+      "text": "اول نبي بعث بعد آدم؟",
+      "answerText": "نوح",
+      "difficulty": 2
+    },
+    {
+      "id": "text_008",
+      "categoryId": "general_text",
+      "text": "اكبر دولة في العالم من حيث عدد السكان ؟",
+      "answerText": "الهند",
+      "difficulty": 2
+    },
+    {
+      "id": "text_009",
+      "categoryId": "general_text",
+      "text": "ما هي أقدم عاصمة مأهوله في العالم؟",
+      "answerText": "دمشق",
+      "difficulty": 3
+    },
+    {
+      "id": "text_010",
+      "categoryId": "general_text",
+      "text": "من هو اول خليفة أموي؟",
+      "answerText": "معاوية بن أبي سفيان",
+      "difficulty": 2
+    },
+    {
+      "id": "text_011",
+      "categoryId": "general_text",
+      "text": "ما اسم العملية التي يتحول بها السائل الى غاز؟",
+      "answerText": "عملية التبخر",
+      "difficulty": 2
+    },
+    {
+      "id": "text_013",
+      "categoryId": "general_text",
+      "text": "ماهي القارة التي تحتوي على اكبر عدد من الدول ؟",
+      "answerText": "إفريقيا",
+      "difficulty": 2
+    },
+    {
+      "id": "text_014",
+      "categoryId": "general_text",
+      "text": "ما اسم المضيق الذي يفصل بين إسبانيا والمغرب؟",
+      "answerText": "مضيق جبل طارق",
+      "difficulty": 2
+    },
+    {
+      "id": "text_015",
+      "categoryId": "general_text",
+      "text": "ما اسم الغاز الذي يستخدم في إطفاء النار ؟",
+      "answerText": "ثاني أكسيد الكربون",
+      "difficulty": 2
+    },
+    {
+      "id": "text_016",
+      "categoryId": "general_text",
+      "text": "ما هو الكوكب الذي يمتلك اكبر عدد من الاقمار ؟",
+      "answerText": "زحل",
+      "difficulty": 2
+    },
+    {
+      "id": "text_017",
+      "categoryId": "general_text",
+      "text": "من هو مؤسس علم الاجتماع ؟",
+      "answerText": "ابن خلدون",
+      "difficulty": 3
+    },
+    {
+      "id": "text_018",
+      "categoryId": "general_text",
+      "text": "ما هو أطول نهر في العالم ؟",
+      "answerText": "نهر النيل",
+      "difficulty": 1
+    },
+    {
+      "id": "text_019",
+      "categoryId": "general_text",
+      "text": "ما اسم صغير الدب؟",
+      "answerText": "ديسم",
+      "difficulty": 3
+    },
+    {
+      "id": "text_020",
+      "categoryId": "general_text",
+      "text": "ما هي عمله اليابان ؟",
+      "answerText": "الين الياباني",
+      "difficulty": 2
+    },
+    {
+      "id": "text_021",
+      "categoryId": "general_text",
+      "text": "ما اسم صغير الفيل؟",
+      "answerText": "دغفل",
+      "difficulty": 5
+    },
+    {
+      "id": "text_022",
+      "categoryId": "general_text",
+      "text": "كم عدد العظام في جسم الإنسان ؟",
+      "answerText": "206",
+      "difficulty": 4
+    },
+    {
+      "id": "islamic_001",
+      "categoryId": "islamic",
+      "text": "من كان رأس الفتنة في عهد عثمان بن عفان ؟",
+      "answerText": "عبد الله بن سبأ",
+      "difficulty": 3
+    },
+    {
+      "id": "islamic_002",
+      "categoryId": "islamic",
+      "text": "من هو الشخص الذي رآه رسول الله في السماء الأولى في رحلة الإسراء والمعراج ؟",
+      "answerText": "آدم عليه السلام",
+      "difficulty": 4
+    },
+    {
+      "id": "islamic_003",
+      "categoryId": "islamic",
+      "text": "أي نبي آمن به جميع قومه ولم يكذبه أحد ؟",
+      "answerText": "يونس عليه السلام",
+      "difficulty": 3
+    },
+    {
+      "id": "islamic_004",
+      "categoryId": "islamic",
+      "text": "ما هو الحرف الوحيد الذي لم يُذكر في أي اسم من أسماء سور القرآن ؟",
+      "answerText": "حرف الظاء (ظ)",
+      "difficulty": 4
+    },
+    {
+      "id": "islamic_005",
+      "categoryId": "islamic",
+      "text": "ما هي السورة التي تسمى “قلب القرآن” ؟",
+      "answerText": "سورة يس",
+      "difficulty": 2
+    },
+    {
+      "id": "islamic_006",
+      "categoryId": "islamic",
+      "text": "من هو النبي الذي كان قومه يعبدون الأيكة ؟",
+      "answerText": "شعيب عليه السلام",
+      "difficulty": 4
+    },
+    {
+      "id": "islamic_007",
+      "categoryId": "islamic",
+      "text": "كم عدد كلمات أعظم آية في القرآن (آية الكرسي) ؟",
+      "answerText": "50 كلمة",
+      "difficulty": 3
+    },
+    {
+      "id": "islamic_008",
+      "categoryId": "islamic",
+      "text": "ما هي السورة التي لا تحتوي على حرف الميم ؟",
+      "answerText": "سورة الكوثر",
+      "difficulty": 3
+    },
+    {
+      "id": "islamic_009",
+      "categoryId": "islamic",
+      "text": "ما هي السورة التي لا تحتوي على حرف الراء ؟",
+      "answerText": "سورة الإخلاص",
+      "difficulty": 3
+    },
+    {
+      "id": "islamic_010",
+      "categoryId": "islamic",
+      "text": "كم مرة ذكرت بسم الله الرحمن الرحيم في المصحف ؟",
+      "answerText": "114 مرة",
+      "difficulty": 3
+    },
+    {
+      "id": "math_001",
+      "categoryId": "math",
+      "imagePath": "images/math/1.jpeg",
+      "answerText": "1",
+      "difficulty": 2
+    },
+    {
+      "id": "math_002",
+      "categoryId": "math",
+      "imagePath": "images/math/10.jpeg",
+      "answerText": "10",
+      "difficulty": 2
+    },
+    {
+      "id": "math_003",
+      "categoryId": "math",
+      "imagePath": "images/math/13.jpeg",
+      "answerText": "13",
+      "difficulty": 2
+    },
+    {
+      "id": "math_004",
+      "categoryId": "math",
+      "imagePath": "images/math/2.jpeg",
+      "answerText": "2",
+      "difficulty": 2
+    },
+    {
+      "id": "math_005",
+      "categoryId": "math",
+      "imagePath": "images/math/21.jpeg",
+      "answerText": "21",
+      "difficulty": 2
+    },
+    {
+      "id": "math_006",
+      "categoryId": "math",
+      "imagePath": "images/math/26.jpeg",
+      "answerText": "26",
+      "difficulty": 2
+    },
+    {
+      "id": "math_007",
+      "categoryId": "math",
+      "imagePath": "images/math/4.jpeg",
+      "answerText": "4",
+      "difficulty": 2
+    },
+    {
+      "id": "math_008",
+      "categoryId": "math",
+      "imagePath": "images/math/5..jpeg",
+      "answerText": "5",
+      "difficulty": 2
+    },
+    {
+      "id": "math_009",
+      "categoryId": "math",
+      "imagePath": "images/math/5.jpeg",
+      "answerText": "5",
+      "difficulty": 2
+    },
+    {
+      "id": "math_010",
+      "categoryId": "math",
+      "imagePath": "images/math/63.jpeg",
+      "answerText": "63",
       "difficulty": 2
     }
   ]
