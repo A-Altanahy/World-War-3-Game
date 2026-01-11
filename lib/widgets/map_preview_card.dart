@@ -89,20 +89,28 @@ class _MapPreviewCardState extends State<MapPreviewCard>
                     children: [
                       // Background - Actual SVG Map Preview
                       Positioned.fill(
-                        child: Container(
-                          color: AppTheme.surfaceDark,
-                          padding: const EdgeInsets.all(16),
-                          child: widget.config.interactiveMapAsset != null
-                              ? SvgPicture.asset(
-                                  widget.config.interactiveMapAsset!,
-                                  fit: BoxFit.contain,
-                                )
-                              : CustomPaint(
-                                  painter: ProceduralMapPainter(
-                                    seed: widget.config.id.hashCode,
-                                    primaryColor: AppTheme.primaryNeon,
-                                  ),
-                                ),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.asset(
+                              'assets/sea background1.jpeg',
+                              fit: BoxFit.cover,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: widget.config.interactiveMapAsset != null
+                                  ? SvgPicture.asset(
+                                      widget.config.interactiveMapAsset!,
+                                      fit: BoxFit.contain,
+                                    )
+                                  : CustomPaint(
+                                      painter: ProceduralMapPainter(
+                                        seed: widget.config.id.hashCode,
+                                        primaryColor: AppTheme.primaryNeon,
+                                      ),
+                                    ),
+                            ),
+                          ],
                         ),
                       ),
 

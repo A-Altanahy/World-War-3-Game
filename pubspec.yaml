@@ -74,6 +74,7 @@ flutter:
     - assets/questions/images/
     - assets/questions/images/global/
     - assets/questions/images/math/
+    - assets/sea background1.jpeg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

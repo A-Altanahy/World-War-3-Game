@@ -260,6 +260,13 @@ class _VectorMapState extends State<VectorMap> {
           child: Stack(
             fit: StackFit.expand,
             children: [
+              // 0. Sea Background Image
+              Image.asset(
+                'assets/sea background1.jpeg',
+                fit: BoxFit.cover,
+                width: size.width,
+                height: size.height,
+              ),
               // 1. Full Map Background (Oceans, Labels, Decoration)
               SvgPicture.asset(
                 widget.mapAsset,
