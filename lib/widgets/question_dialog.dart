@@ -1,5 +1,7 @@
 // lib/widgets/question_dialog.dart
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../models/question.dart';
 import '../models/question_category.dart';
@@ -91,6 +93,46 @@ class _QuestionDialogState extends State<QuestionDialog>
     super.dispose();
   }
 
+  Widget _buildImageWidget(String path, {BoxFit fit = BoxFit.contain}) {
+    // Check if it's an absolute path (custom image)
+    final file = File(path);
+    if (path.startsWith('/') ||
+        path.startsWith('\\') ||
+        (path.length > 1 && path[1] == ':')) {
+      return Image.file(
+        file,
+        fit: fit,
+        errorBuilder: (context, error, stackTrace) => _buildErrorImage(),
+      );
+    }
+
+    // Otherwise treat as asset (built-in)
+    // Ensure we have the correct prefix if missing
+    String assetPath = path;
+    if (!assetPath.startsWith('assets/')) {
+      assetPath = 'assets/questions/$assetPath';
+    }
+
+    return Image.asset(
+      assetPath,
+      fit: fit,
+      errorBuilder: (context, error, stackTrace) => _buildErrorImage(),
+    );
+  }
+
+  Widget _buildErrorImage() {
+    return Container(
+      color: AppTheme.surfaceDark,
+      child: const Center(
+        child: Icon(
+          Icons.broken_image,
+          color: AppTheme.textMuted,
+          size: 64,
+        ),
+      ),
+    );
+  }
+
   void _showImageZoom(String imagePath) {
     showDialog(
       context: context,
@@ -118,22 +160,7 @@ class _QuestionDialogState extends State<QuestionDialog>
                         ),
                       ],
                     ),
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: AppTheme.surfaceDark,
-                          child: const Center(
-                            child: Icon(
-                              Icons.broken_image,
-                              color: AppTheme.textMuted,
-                              size: 64,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                    child: _buildImageWidget(imagePath),
                   ),
                 ),
               ),
@@ -349,9 +376,9 @@ class _QuestionDialogState extends State<QuestionDialog>
               mainAxisSpacing: 12,
               childAspectRatio: 1.1,
             ),
-            itemCount: widget.questionService.categories.length,
+            itemCount: widget.questionService.visibleCategories.length,
             itemBuilder: (context, index) {
-              final category = widget.questionService.categories[index];
+              final category = widget.questionService.visibleCategories[index];
               return _buildCategoryCard(category);
             },
           ),
@@ -640,8 +667,7 @@ class _QuestionDialogState extends State<QuestionDialog>
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
-                      onTap: () => _showImageZoom(
-                          'assets/questions/${currentQuestion!.imagePath!}'),
+                      onTap: () => _showImageZoom(currentQuestion!.imagePath!),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -651,22 +677,7 @@ class _QuestionDialogState extends State<QuestionDialog>
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            'assets/questions/${currentQuestion!.imagePath!}',
-                            fit: BoxFit.contain,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: AppTheme.surfaceDark,
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.broken_image,
-                                    color: AppTheme.textMuted,
-                                    size: 64,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          child: _buildImageWidget(currentQuestion!.imagePath!),
                         ),
                       ),
                     ),
@@ -766,8 +777,8 @@ class _QuestionDialogState extends State<QuestionDialog>
                     Expanded(
                       flex: 3,
                       child: GestureDetector(
-                        onTap: () => _showImageZoom(
-                            'assets/questions/${currentQuestion!.answerImagePath!}'),
+                        onTap: () =>
+                            _showImageZoom(currentQuestion!.answerImagePath!),
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
@@ -777,22 +788,8 @@ class _QuestionDialogState extends State<QuestionDialog>
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              'assets/questions/${currentQuestion!.answerImagePath!}',
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  color: AppTheme.surfaceDark,
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.broken_image,
-                                      color: AppTheme.textMuted,
-                                      size: 64,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
+                            child: _buildImageWidget(
+                                currentQuestion!.answerImagePath!),
                           ),
                         ),
                       ),

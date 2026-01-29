@@ -6,6 +6,7 @@ class QuestionCategory {
   final String description;
   final String? iconPath;
   final String color; // Hex color string
+  final bool hidden; // Whether to hide this category from the game UI
 
   QuestionCategory({
     required this.id,
@@ -13,6 +14,7 @@ class QuestionCategory {
     required this.description,
     this.iconPath,
     this.color = '#2196F3', // Default blue color
+    this.hidden = false, // Default to visible
   });
 
   factory QuestionCategory.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class QuestionCategory {
       description: json['description'] as String,
       iconPath: json['iconPath'] as String?,
       color: json['color'] as String? ?? '#2196F3',
+      hidden: json['hidden'] as bool? ?? false,
     );
   }
 
@@ -32,6 +35,7 @@ class QuestionCategory {
       'description': description,
       'iconPath': iconPath,
       'color': color,
+      'hidden': hidden,
     };
   }
 }

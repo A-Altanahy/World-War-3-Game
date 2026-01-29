@@ -48,8 +48,9 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
       final gameStateMap = await _storageService.loadGame(slotId);
 
       if (gameStateMap != null) {
-        final questionService = QuestionService();
-        await questionService.initialize();
+        // Get initialized question service from global provider
+        final questionService =
+            Provider.of<QuestionService>(context, listen: false);
 
         // Determine map type from saved data
         // Determine map type from saved data

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../widgets/command_card.dart';
+import 'manage_questions_page.dart';
 import 'map_selection_page.dart';
 import 'save_slots_page.dart';
 
@@ -45,61 +46,82 @@ class _ConfigurationSelectionPageState extends State<ConfigurationSelectionPage>
           gradient: AppTheme.backgroundGradient,
         ),
         child: SafeArea(
-          child: FadeTransition(
-            opacity: _fadeAnimation,
-            child: Column(
-              children: [
-                _buildHeroHeader(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0, vertical: 12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // NEW WAR BUTTON
-                        Expanded(
-                          child: _buildWarButton(
-                            title: 'معركة جديدة',
-                            subtitle: 'START NEW WAR',
-                            icon: Icons.add_moderator,
-                            color: AppTheme.primaryNeon,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MapSelectionPage()),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 24),
+          child: Stack(
+            children: [
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: Column(
+                  children: [
+                    _buildHeroHeader(),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24.0, vertical: 12.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // NEW WAR BUTTON
+                            Expanded(
+                              child: _buildWarButton(
+                                title: 'معركة جديدة',
+                                subtitle: 'START NEW WAR',
+                                icon: Icons.add_moderator,
+                                color: AppTheme.primaryNeon,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MapSelectionPage()),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 24),
 
-                        // CONTINUE WAR BUTTON
-                        Expanded(
-                          child: _buildWarButton(
-                            title: 'استكمال المعركة',
-                            subtitle: 'CONTINUE WAR',
-                            icon: Icons.history_edu,
-                            color: AppTheme.accentOrange,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SaveSlotsPage()),
-                              );
-                            },
-                          ),
+                            // CONTINUE WAR BUTTON
+                            Expanded(
+                              child: _buildWarButton(
+                                title: 'استكمال المعركة',
+                                subtitle: 'CONTINUE WAR',
+                                icon: Icons.history_edu,
+                                color: AppTheme.accentOrange,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SaveSlotsPage()),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                          ],
                         ),
-                        const SizedBox(height: 24),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              // Settings/Manage Questions Button
+              Positioned(
+                top: 16,
+                right: 16,
+                child: IconButton(
+                  icon: const Icon(Icons.settings, color: Colors.white70),
+                  tooltip: 'إدارة الأسئلة',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ManageQuestionsPage()),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -120,6 +142,7 @@ class _ConfigurationSelectionPageState extends State<ConfigurationSelectionPage>
           Text(
             'غرفة العمليات',
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
+              fontFamily: 'Changa',
               color: Colors.white,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,

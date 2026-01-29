@@ -2,33 +2,57 @@
     "categories": [
         {
             "id": "general",
-            "name": "عامة",
-            "description": "أسئلة عامة متنوعة",
-            "color": "#2196F3"
+            "name": "ألغاز",
+            "description": "أسئلة ألغاز عامة",
+            "color": "#2196F3",
+            "hidden": true
         },
         {
-            "id": "from_eye",
-            "name": "من عينه",
-            "description": "أسئلة من وجهة نظر الشخص",
-            "color": "#9C27B0"
-        },
-        {
-            "id": "general_text",
-            "name": "أسئلة عامة",
-            "description": "أسئلة وتحديات نصية",
+            "id": "religious",
+            "name": "أسئلة دينية",
+            "description": "أسئلة دينية متنوعة",
             "color": "#4CAF50"
         },
         {
-            "id": "islamic",
-            "name": "أسئلة دينية",
-            "description": "أسئلة دينية وثقافية",
-            "color": "#009688"
+            "id": "general_knowledge",
+            "name": "أسئلة عامة",
+            "description": "أسئلة ثقافية عامة",
+            "color": "#2196F3"
         },
+
         {
             "id": "math",
             "name": "رياضيات",
             "description": "أسئلة رياضية",
             "color": "#FF9800"
+        },
+        {
+            "id": "zoom",
+            "name": "زووووم",
+            "description": "أسئلة زووم",
+            "color": "#F44336",
+            "hidden": true
+        },
+        {
+            "id": "surah_names",
+            "name": "في أي سورة",
+            "description": "أسئلة عن أسماء السور",
+            "color": "#4CAF50",
+            "hidden": true
+        },
+        {
+            "id": "strange_words",
+            "name": "كلمات غريبة",
+            "description": "أسئلة عن غريب القرآن",
+            "color": "#673AB7",
+            "hidden": true
+        },
+        {
+            "id": "seerah",
+            "name": "سيرة",
+            "description": "أسئلة عن السيرة النبوية",
+            "color": "#00BCD4",
+            "hidden": true
         }
     ]
 }

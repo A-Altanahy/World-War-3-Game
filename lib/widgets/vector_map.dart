@@ -268,6 +268,10 @@ class _VectorMapState extends State<VectorMap> {
                 height: size.height,
               ),
               // 1. Full Map Background (Oceans, Labels, Decoration)
+              Image.asset(
+                'assets/sea background_X-Design.png',
+                fit: BoxFit.cover,
+              ),
               SvgPicture.asset(
                 widget.mapAsset,
                 fit: BoxFit.contain,

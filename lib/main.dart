@@ -1,10 +1,12 @@
 import 'package:custom_risk/pages/configuration_selection_page.dart';
+import 'package:custom_risk/services/question_service.dart';
 import 'package:custom_risk/theme/app_theme.dart';
 import 'package:custom_risk/utils/fullscreen_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 bool get _isDesktopPlatform {
@@ -42,10 +44,19 @@ void main() async {
     systemNavigationBarIconBrightness: Brightness.light,
   ));
 
+  // Initialize QuestionService
+  final questionService = QuestionService();
+  await questionService.initialize();
+
   // Start in windowed mode (user can toggle with F11 or ESC)
   await FullscreenHelper.exitFullscreen();
 
-  runApp(const StrategicCommandApp());
+  runApp(
+    ChangeNotifierProvider.value(
+      value: questionService,
+      child: const StrategicCommandApp(),
+    ),
+  );
 }
 
 class StrategicCommandApp extends StatelessWidget {

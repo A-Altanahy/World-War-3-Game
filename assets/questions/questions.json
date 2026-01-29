@@ -143,345 +143,149 @@
     {
       "id": "eye_001",
       "categoryId": "from_eye",
-      "imagePath": "images/1q.jpeg",
-      "answerImagePath": "images/1a.jpeg",
+      "imagePath": "images/from_eye_2/q1.jpeg",
+      "answerImagePath": "images/from_eye_2/a1.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_002",
       "categoryId": "from_eye",
-      "imagePath": "images/2q.jpeg",
-      "answerImagePath": "images/2a.jpeg",
+      "imagePath": "images/from_eye_2/q2.jpeg",
+      "answerImagePath": "images/from_eye_2/a2.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_003",
       "categoryId": "from_eye",
-      "imagePath": "images/3q.jpeg",
-      "answerImagePath": "images/3a.jpeg",
+      "imagePath": "images/from_eye_2/q3.jpeg",
+      "answerImagePath": "images/from_eye_2/a3.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_004",
       "categoryId": "from_eye",
-      "imagePath": "images/4q.jpeg",
-      "answerImagePath": "images/4a.jpeg",
+      "imagePath": "images/from_eye_2/q4.jpeg",
+      "answerImagePath": "images/from_eye_2/a4.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_005",
       "categoryId": "from_eye",
-      "imagePath": "images/5q.jpeg",
-      "answerImagePath": "images/5a.jpeg",
+      "imagePath": "images/from_eye_2/q5.jpeg",
+      "answerImagePath": "images/from_eye_2/a5.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_006",
       "categoryId": "from_eye",
-      "imagePath": "images/6q.jpeg",
-      "answerImagePath": "images/6a.jpeg",
+      "imagePath": "images/from_eye_2/q6.jpeg",
+      "answerImagePath": "images/from_eye_2/a6.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_007",
       "categoryId": "from_eye",
-      "imagePath": "images/7q.jpeg",
-      "answerImagePath": "images/7a.jpeg",
+      "imagePath": "images/from_eye_2/q7.jpeg",
+      "answerImagePath": "images/from_eye_2/a7.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_008",
       "categoryId": "from_eye",
-      "imagePath": "images/8q.jpeg",
-      "answerImagePath": "images/8a.jpeg",
+      "imagePath": "images/from_eye_2/q8.jpeg",
+      "answerImagePath": "images/from_eye_2/a8.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_009",
       "categoryId": "from_eye",
-      "imagePath": "images/9q.jpeg",
-      "answerImagePath": "images/9a.jpeg",
+      "imagePath": "images/from_eye_2/q9.jpeg",
+      "answerImagePath": "images/from_eye_2/a9.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_010",
       "categoryId": "from_eye",
-      "imagePath": "images/10q.jpeg",
-      "answerImagePath": "images/10a.jpeg",
+      "imagePath": "images/from_eye_2/q10.jpeg",
+      "answerImagePath": "images/from_eye_2/a10.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_011",
       "categoryId": "from_eye",
-      "imagePath": "images/11q.jpeg",
-      "answerImagePath": "images/11a.jpeg",
+      "imagePath": "images/from_eye_2/q11.jpeg",
+      "answerImagePath": "images/from_eye_2/a11.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_012",
       "categoryId": "from_eye",
-      "imagePath": "images/12q.jpeg",
-      "answerImagePath": "images/12a.jpeg",
+      "imagePath": "images/from_eye_2/q12.jpeg",
+      "answerImagePath": "images/from_eye_2/a12.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_013",
       "categoryId": "from_eye",
-      "imagePath": "images/13q.jpeg",
-      "answerImagePath": "images/13a.jpeg",
+      "imagePath": "images/from_eye_2/q13.jpeg",
+      "answerImagePath": "images/from_eye_2/a13.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_014",
       "categoryId": "from_eye",
-      "imagePath": "images/14q.jpeg",
-      "answerImagePath": "images/14a.jpeg",
+      "imagePath": "images/from_eye_2/q14.jpeg",
+      "answerImagePath": "images/from_eye_2/a14.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_015",
       "categoryId": "from_eye",
-      "imagePath": "images/15q.jpeg",
-      "answerImagePath": "images/15a.jpeg",
+      "imagePath": "images/from_eye_2/q15.jpeg",
+      "answerImagePath": "images/from_eye_2/a15.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_016",
       "categoryId": "from_eye",
-      "imagePath": "images/16q.jpeg",
-      "answerImagePath": "images/16a.jpeg",
+      "imagePath": "images/from_eye_2/q16.jpeg",
+      "answerImagePath": "images/from_eye_2/a16.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_017",
       "categoryId": "from_eye",
-      "imagePath": "images/17q.jpeg",
-      "answerImagePath": "images/17a.jpeg",
+      "imagePath": "images/from_eye_2/q17.jpeg",
+      "answerImagePath": "images/from_eye_2/a17.jpeg",
       "difficulty": 2
     },
     {
       "id": "eye_018",
       "categoryId": "from_eye",
-      "imagePath": "images/18q.jpeg",
-      "answerImagePath": "images/18a.jpeg",
+      "imagePath": "images/from_eye_2/q18.jpeg",
+      "answerImagePath": "images/from_eye_2/a18.jpeg",
       "difficulty": 2
     },
     {
-      "id": "text_001",
-      "categoryId": "general_text",
-      "text": "ما اسم البحر الذي يفصل بين آسيا وإفريقيا ؟",
-      "answerText": "البحر الأحمر",
+      "id": "eye_019",
+      "categoryId": "from_eye",
+      "imagePath": "images/from_eye_2/q19.jpeg",
+      "answerImagePath": "images/from_eye_2/a19.jpeg",
       "difficulty": 2
     },
     {
-      "id": "text_002",
-      "categoryId": "general_text",
-      "text": "العضو المسؤول عن عن تنقية الدم في جسم الإنسان ؟",
-      "answerText": "الكلية",
+      "id": "eye_020",
+      "categoryId": "from_eye",
+      "imagePath": "images/from_eye_2/q20.jpeg",
+      "answerImagePath": "images/from_eye_2/a20.jpeg",
       "difficulty": 2
     },
     {
-      "id": "text_003",
-      "categoryId": "general_text",
-      "text": "من هو اول من جمع القرآن ؟",
-      "answerText": "أبو بكر الصديق",
+      "id": "eye_021",
+      "categoryId": "from_eye",
+      "imagePath": "images/from_eye_2/q21.jpeg",
+      "answerImagePath": "images/from_eye_2/a21.jpeg",
       "difficulty": 2
-    },
-    {
-      "id": "text_004",
-      "categoryId": "general_text",
-      "text": "اكبر دولة في العالم من حيث المساحة؟",
-      "answerText": "روسيا",
-      "difficulty": 1
-    },
-    {
-      "id": "text_005",
-      "categoryId": "general_text",
-      "text": "أصغر دولة في العالم من حيث المساحة ؟",
-      "answerText": "الفاتيكان",
-      "difficulty": 4
-    },
-    {
-      "id": "text_006",
-      "categoryId": "general_text",
-      "text": "ما هو أكبر محيط في العالم؟",
-      "answerText": "المحيط الهادئ",
-      "difficulty": 2
-    },
-    {
-      "id": "text_007",
-      "categoryId": "general_text",
-      "text": "اول نبي بعث بعد آدم؟",
-      "answerText": "نوح",
-      "difficulty": 2
-    },
-    {
-      "id": "text_008",
-      "categoryId": "general_text",
-      "text": "اكبر دولة في العالم من حيث عدد السكان ؟",
-      "answerText": "الهند",
-      "difficulty": 2
-    },
-    {
-      "id": "text_009",
-      "categoryId": "general_text",
-      "text": "ما هي أقدم عاصمة مأهوله في العالم؟",
-      "answerText": "دمشق",
-      "difficulty": 3
-    },
-    {
-      "id": "text_010",
-      "categoryId": "general_text",
-      "text": "من هو اول خليفة أموي؟",
-      "answerText": "معاوية بن أبي سفيان",
-      "difficulty": 2
-    },
-    {
-      "id": "text_011",
-      "categoryId": "general_text",
-      "text": "ما اسم العملية التي يتحول بها السائل الى غاز؟",
-      "answerText": "عملية التبخر",
-      "difficulty": 2
-    },
-    {
-      "id": "text_013",
-      "categoryId": "general_text",
-      "text": "ماهي القارة التي تحتوي على اكبر عدد من الدول ؟",
-      "answerText": "إفريقيا",
-      "difficulty": 2
-    },
-    {
-      "id": "text_014",
-      "categoryId": "general_text",
-      "text": "ما اسم المضيق الذي يفصل بين إسبانيا والمغرب؟",
-      "answerText": "مضيق جبل طارق",
-      "difficulty": 2
-    },
-    {
-      "id": "text_015",
-      "categoryId": "general_text",
-      "text": "ما اسم الغاز الذي يستخدم في إطفاء النار ؟",
-      "answerText": "ثاني أكسيد الكربون",
-      "difficulty": 2
-    },
-    {
-      "id": "text_016",
-      "categoryId": "general_text",
-      "text": "ما هو الكوكب الذي يمتلك اكبر عدد من الاقمار ؟",
-      "answerText": "زحل",
-      "difficulty": 2
-    },
-    {
-      "id": "text_017",
-      "categoryId": "general_text",
-      "text": "من هو مؤسس علم الاجتماع ؟",
-      "answerText": "ابن خلدون",
-      "difficulty": 3
-    },
-    {
-      "id": "text_018",
-      "categoryId": "general_text",
-      "text": "ما هو أطول نهر في العالم ؟",
-      "answerText": "نهر النيل",
-      "difficulty": 1
-    },
-    {
-      "id": "text_019",
-      "categoryId": "general_text",
-      "text": "ما اسم صغير الدب؟",
-      "answerText": "ديسم",
-      "difficulty": 3
-    },
-    {
-      "id": "text_020",
-      "categoryId": "general_text",
-      "text": "ما هي عمله اليابان ؟",
-      "answerText": "الين الياباني",
-      "difficulty": 2
-    },
-    {
-      "id": "text_021",
-      "categoryId": "general_text",
-      "text": "ما اسم صغير الفيل؟",
-      "answerText": "دغفل",
-      "difficulty": 5
-    },
-    {
-      "id": "text_022",
-      "categoryId": "general_text",
-      "text": "كم عدد العظام في جسم الإنسان ؟",
-      "answerText": "206",
-      "difficulty": 4
-    },
-    {
-      "id": "islamic_001",
-      "categoryId": "islamic",
-      "text": "من كان رأس الفتنة في عهد عثمان بن عفان ؟",
-      "answerText": "عبد الله بن سبأ",
-      "difficulty": 3
-    },
-    {
-      "id": "islamic_002",
-      "categoryId": "islamic",
-      "text": "من هو الشخص الذي رآه رسول الله في السماء الأولى في رحلة الإسراء والمعراج ؟",
-      "answerText": "آدم عليه السلام",
-      "difficulty": 4
-    },
-    {
-      "id": "islamic_003",
-      "categoryId": "islamic",
-      "text": "أي نبي آمن به جميع قومه ولم يكذبه أحد ؟",
-      "answerText": "يونس عليه السلام",
-      "difficulty": 3
-    },
-    {
-      "id": "islamic_004",
-      "categoryId": "islamic",
-      "text": "ما هو الحرف الوحيد الذي لم يُذكر في أي اسم من أسماء سور القرآن ؟",
-      "answerText": "حرف الظاء (ظ)",
-      "difficulty": 4
-    },
-    {
-      "id": "islamic_005",
-      "categoryId": "islamic",
-      "text": "ما هي السورة التي تسمى “قلب القرآن” ؟",
-      "answerText": "سورة يس",
-      "difficulty": 2
-    },
-    {
-      "id": "islamic_006",
-      "categoryId": "islamic",
-      "text": "من هو النبي الذي كان قومه يعبدون الأيكة ؟",
-      "answerText": "شعيب عليه السلام",
-      "difficulty": 4
-    },
-    {
-      "id": "islamic_007",
-      "categoryId": "islamic",
-      "text": "كم عدد كلمات أعظم آية في القرآن (آية الكرسي) ؟",
-      "answerText": "50 كلمة",
-      "difficulty": 3
-    },
-    {
-      "id": "islamic_008",
-      "categoryId": "islamic",
-      "text": "ما هي السورة التي لا تحتوي على حرف الميم ؟",
-      "answerText": "سورة الكوثر",
-      "difficulty": 3
-    },
-    {
-      "id": "islamic_009",
-      "categoryId": "islamic",
-      "text": "ما هي السورة التي لا تحتوي على حرف الراء ؟",
-      "answerText": "سورة الإخلاص",
-      "difficulty": 3
-    },
-    {
-      "id": "islamic_010",
-      "categoryId": "islamic",
-      "text": "كم مرة ذكرت بسم الله الرحمن الرحيم في المصحف ؟",
-      "answerText": "114 مرة",
-      "difficulty": 3
     },
     {
       "id": "math_001",
@@ -551,6 +355,783 @@
       "categoryId": "math",
       "imagePath": "images/math/63.jpeg",
       "answerText": "63",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_001",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q1.png",
+      "answerImagePath": "images/zoom/a1.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_002",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q2.png",
+      "answerImagePath": "images/zoom/a2.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_003",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q3.png",
+      "answerImagePath": "images/zoom/a3.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_004",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q4.png",
+      "answerImagePath": "images/zoom/a4.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_005",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q5.jpeg",
+      "answerImagePath": "images/zoom/a5.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_006",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q6.png",
+      "answerImagePath": "images/zoom/a6.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_007",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q7.png",
+      "answerImagePath": "images/zoom/a7.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_008",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q8.png",
+      "answerImagePath": "images/zoom/a8.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_009",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q9.png",
+      "answerImagePath": "images/zoom/a9.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_010",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q10.png",
+      "answerImagePath": "images/zoom/a10.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_011",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q11.png",
+      "answerImagePath": "images/zoom/a11.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_012",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q12.png",
+      "answerImagePath": "images/zoom/a12.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_013",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q13.png",
+      "answerImagePath": "images/zoom/a13.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_014",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q14.png",
+      "answerImagePath": "images/zoom/a14.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_015",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q15.png",
+      "answerImagePath": "images/zoom/a15.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_016",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q16.png",
+      "answerImagePath": "images/zoom/a16.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_017",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q17.png",
+      "answerImagePath": "images/zoom/a17.png",
+      "difficulty": 2
+    },
+    {
+      "id": "zoom_018",
+      "categoryId": "zoom",
+      "imagePath": "images/zoom/q18.png",
+      "answerImagePath": "images/zoom/a18.png",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_001",
+      "categoryId": "seerah",
+      "text": "في أي عام كانت غزوة الأحزاب؟",
+      "answerText": "السنة الخامسة من الهجرة",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_002",
+      "categoryId": "seerah",
+      "text": "في أي عام كان فتح مكة؟",
+      "answerText": "السنة الثامنة من الهجرة",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_003",
+      "categoryId": "seerah",
+      "text": "من هو الصحابي الذي لقّب بسيف الله المسلول؟",
+      "answerText": "خالد بن الوليد رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_004",
+      "categoryId": "seerah",
+      "text": "كم كان عدد جيش المسلمين في غزوة مؤتة؟",
+      "answerText": "٣٠٠٠ مقاتل",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_005",
+      "categoryId": "seerah",
+      "text": "من هما وزيرا النبي صلى الله عليه وسلم؟",
+      "answerText": "أبو بكر الصديق وعمر بن الخطاب رضي الله عنهما",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_006",
+      "categoryId": "seerah",
+      "text": "النبي صلى الله عليه وسلم كان يحب أن يسمع القرآن من بعض الصحابة، اذكر واحدًا منهم.",
+      "answerText": "أبيّ بن كعب وعبدالله بن مسعود رضي الله عنهما",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_007",
+      "categoryId": "seerah",
+      "text": "من هو سيد قراء الصحابة رضي الله عنهم؟",
+      "answerText": "أبيّ بن كعب رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_008",
+      "categoryId": "seerah",
+      "text": "من هو أول من جهر بالقرآن من الصحابة رضي الله عنهم في مكة المكرمة؟",
+      "answerText": "عبدالله بن مسعود رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_009",
+      "categoryId": "seerah",
+      "text": "من الصحابي الذي كان يجتمع المشركون لسماع قراءته للقرآن الكريم؟",
+      "answerText": "أبو بكر الصديق رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_010",
+      "categoryId": "seerah",
+      "text": "كم استمر نزول الوحي على النبي صلى الله عليه وسلم؟",
+      "answerText": "٢٣ سنة",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_011",
+      "categoryId": "seerah",
+      "text": "اذكر واحدًا من أبناء عم رسول الله صلى الله عليه وسلم.",
+      "answerText": "علي بن أبي طالب أو جعفر بن أبي طالب أو عبدالله بن العباس رضي الله عنهما",
+      "difficulty": 2
+    },
+    {
+      "id": "seerah_012",
+      "categoryId": "seerah",
+      "text": "من هو عم النبي صلى الله عليه وسلم الذي آمن به؟",
+      "answerText": "العباس بن عبدالمطلب رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_001",
+      "categoryId": "strange_words",
+      "text": "ما معنى الصمد في قوله تعالى: \" الله الصمد \"؟",
+      "answerText": "الذي تصمد إليه الخلائق",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_002",
+      "categoryId": "strange_words",
+      "text": "ما معنى أعوذ في قوله تعالى: \" قل أعوذ برب الفلق \"؟",
+      "answerText": "أعتصم وألتجئ",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_003",
+      "categoryId": "strange_words",
+      "text": "ما معنى جيدها في قوله تعالى: \" في جيدها حبل من مسد \"؟",
+      "answerText": "في عنقها حبل من مسد",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_004",
+      "categoryId": "strange_words",
+      "text": "ما معنى يحض في قوله تعالى: \" ولا يحضّ على طعام المسكين \"؟",
+      "answerText": "ولا يحث على طعام المسكين",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_005",
+      "categoryId": "strange_words",
+      "text": "ما معنى مؤصدة في قوله تعالى: \" إنها عليهم مؤصدة \"؟",
+      "answerText": "أن النار عليهم مغلقة",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_006",
+      "categoryId": "strange_words",
+      "text": "ما معنى الخير في قوله تعالى: \" وإنه لحب الخير لشديد \"؟",
+      "answerText": "المال",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_007",
+      "categoryId": "strange_words",
+      "text": "ما معنى البينة في قوله تعالى: \" لم يكن الذين كفروا من أهل الكتاب والمشركين منفكين حتى تأتيهم البينة \"؟",
+      "answerText": "رسولٌ من الله يتلوا صحفًا مطهرة",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_008",
+      "categoryId": "strange_words",
+      "text": "من المقصود في قوله تعالى: \" تنزل الملائكة والروح فيها بإذن ربهم من كل أمر \"؟",
+      "answerText": "جبريل عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_009",
+      "categoryId": "strange_words",
+      "text": "ما معنى قلى: \" ما ودّعك ربّك وما قلى \"؟",
+      "answerText": "ما أبغضك",
+      "difficulty": 2
+    },
+    {
+      "id": "strange_words_010",
+      "categoryId": "strange_words",
+      "text": "من المقصود في قوله تعالى: \" فقال لهم رسول الله ناقة الله وسقياها \"؟",
+      "answerText": "صالح عليهم السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_001",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" العذابَ اﻷكبرَ \"؟",
+      "answerText": "سورة الغاشية",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_002",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ويصلى سعيرا \"؟",
+      "answerText": "سورة الانشقاق",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_003",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" وإذا البحار فجّرت \"؟",
+      "answerText": "سورة الانفطار",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_004",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" إن للمتّقين مفازا \"؟",
+      "answerText": "سورة النبأ",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_005",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كلا بل تحبّون العاجلة \"؟",
+      "answerText": "سورة القيامة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_006",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أشتاتًا \"؟",
+      "answerText": "سورة الزلزلة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_007",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ونيسرك لليسرى \"؟",
+      "answerText": "سورة الأعلى",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_008",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" نار الله الموقدة \"؟",
+      "answerText": "سورة الهمزة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_009",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أيحسب أن لم يره أحد \"؟",
+      "answerText": "سورة البلد",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_010",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كرامٍ بررة \"؟",
+      "answerText": "سورة عبس",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_001",
+      "categoryId": "religious",
+      "text": "من كان رأس الفتنة في عهد عثمان بن عفان؟",
+      "answerText": "عبد الله بن سبأ",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_002",
+      "categoryId": "religious",
+      "text": "من هو الشخص الذي رآه رسول الله في السماء الأولى في رحلة الإسراء والمعراج؟",
+      "answerText": "سيدنا آدم عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_003",
+      "categoryId": "religious",
+      "text": "ما هي السورة التي ورد فيها اسم سيدنا هارون ولكن لم يُذكر فيها اسم موسى؟",
+      "answerText": "سورة مريم",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_004",
+      "categoryId": "religious",
+      "text": "أي نبي آمن به جميع قومه ولم يكذبه أحد؟",
+      "answerText": "يونس عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_005",
+      "categoryId": "religious",
+      "text": "من هو النبي الذي أمره الله أن يتخذ من الجبل بيتًا؟",
+      "answerText": "النبي داوود عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_006",
+      "categoryId": "religious",
+      "text": "ما هو الحرف الوحيد الذي لم يُذكر في أي اسم من أسماء سور القرآن؟",
+      "answerText": "حرف الظاء (ظ)",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_007",
+      "categoryId": "religious",
+      "text": "أول سورة نزلت فيها سجدة التلاوة؟",
+      "answerText": "سورة النجم",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_008",
+      "categoryId": "religious",
+      "text": "من هو النبي الذي جاء بعد سليمان عليه السلام؟",
+      "answerText": "زكريا عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_009",
+      "categoryId": "religious",
+      "text": "ما هي السورة التي تسمى \"قلب القرآن\"؟",
+      "answerText": "سورة يس",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_010",
+      "categoryId": "religious",
+      "text": "من الصحابي الذي لقب بذي النور؟",
+      "answerText": "الطفيل بن عمرو الدوسي",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_011",
+      "categoryId": "religious",
+      "text": "ما اسم زوجة فرعون التي آمنت بموسى؟",
+      "answerText": "آسية بنت مزاحم",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_012",
+      "categoryId": "religious",
+      "text": "ما هي الكلمة التي تتوسط القرآن الكريم؟",
+      "answerText": "كلمة \"وليَتَلطَّف\" في سورة الكهف",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_013",
+      "categoryId": "religious",
+      "text": "ما هي الحشرة التي تكلمت في القرآن؟",
+      "answerText": "النملة (في قصة سليمان عليه السلام)",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_014",
+      "categoryId": "religious",
+      "text": "من أول من جهر بالقرآن في مكة؟",
+      "answerText": "عبد الله بن مسعود رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_015",
+      "categoryId": "religious",
+      "text": "من هو النبي الذي كان قومه يعبدون الأيكة؟",
+      "answerText": "شعيب عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_016",
+      "categoryId": "religious",
+      "text": "كم عدد كلمات أعظم آية في القرآن (آية الكرسي)؟",
+      "answerText": "50 كلمة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_017",
+      "categoryId": "religious",
+      "text": "ما هي السورة التي تُسمى بسورة القتال؟",
+      "answerText": "سورة محمد",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_018",
+      "categoryId": "religious",
+      "text": "ما هي المعركة التي قُتل فيها معظم قراء القرآن من الصحابة؟",
+      "answerText": "معركة اليمامة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_019",
+      "categoryId": "religious",
+      "text": "كم سنة استمرت الدعوة السرية في مكة؟",
+      "answerText": "ثلاث سنوات",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_020",
+      "categoryId": "religious",
+      "text": "من هو الصحابي الذي حمل رسالة النبي ﷺ إلى كسرى؟",
+      "answerText": "عبد الله بن حذافة السهمي رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_021",
+      "categoryId": "religious",
+      "text": "من هو الشخص الوحيد الذي قتله الرسول ﷺ؟",
+      "answerText": "أبي بن خلف",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_022",
+      "categoryId": "religious",
+      "text": "ما هو عدد حروف سورة الإخلاص؟",
+      "answerText": "47 حرفًا",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_023",
+      "categoryId": "religious",
+      "text": "ما هو اسم الصحابي الذي أمره النبي ﷺ بتعلم لغة اليهود في 15 يومًا؟",
+      "answerText": "زيد بن ثابت رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_024",
+      "categoryId": "religious",
+      "text": "ما هي السورة التي تسمى \"القاضية\" لأنها تقضي على الكفر تمامًا عند قراءتها؟",
+      "answerText": "سورة الإخلاص",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_025",
+      "categoryId": "religious",
+      "text": "ما هي الحشرة التي أوحى الله إليها في القرآن؟",
+      "answerText": "النحل (في سورة النحل: \"وأوحى ربك إلى النحل\")",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_026",
+      "categoryId": "religious",
+      "text": "من هو الصحابي الذي دعا له النبي قائلاً: \"اللهم فقهه في الدين وعلمه التأويل\"؟",
+      "answerText": "عبد الله بن عباس رضي الله عنه",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_027",
+      "categoryId": "religious",
+      "text": "ما الفرق بين الركن والواجب والشرط في الصلاة؟",
+      "answerText": "الركن: لا تصح الصلاة بدونه عمدًا أو سهوًا. الواجب: يجبر بالسجود إن ترك سهوًا. الشرط: يلزم قبل الصلاة ولا يجبر بالسجود",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_028",
+      "categoryId": "religious",
+      "text": "ما الذنب الذي لا يغفر لصاحبه إن مات عليه؟",
+      "answerText": "الشرك بالله",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_029",
+      "categoryId": "religious",
+      "text": "ما المقصود بالسبع المثاني؟",
+      "answerText": "سورة الفاتحة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_030",
+      "categoryId": "religious",
+      "text": "كم مرة ذكرت بسم الله الرحمن الرحيم في القرآن؟",
+      "answerText": "١١٤",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_031",
+      "categoryId": "religious",
+      "text": "من هو الصحابي الذي غسلته الملائكة؟",
+      "answerText": "حنظلة بن أبي عامر",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_032",
+      "categoryId": "religious",
+      "text": "ما هي السورة التي نزلت دفعة واحدة؟",
+      "answerText": "الأنعام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_033",
+      "categoryId": "religious",
+      "text": "كم عدد سجدات التلاوة؟",
+      "answerText": "١٥",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_034",
+      "categoryId": "religious",
+      "text": "من هم أولو العزم من الرسل؟",
+      "answerText": "نوح وإبراهيم وموسى وعيسى ومحمد",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_035",
+      "categoryId": "religious",
+      "text": "من أول شهيد في الإسلام؟",
+      "answerText": "سمية بنت خياط رضي الله عنها",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_036",
+      "categoryId": "religious",
+      "text": "ما أول معركة بحرية للمسلمين؟",
+      "answerText": "ذات الصواري",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_037",
+      "categoryId": "religious",
+      "text": "من آخر من توفي من أمهات المؤمنين؟",
+      "answerText": "أم سلمة رضي الله عنها",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_001",
+      "categoryId": "general_knowledge",
+      "text": "من هو مؤسس علم الاجتماع؟",
+      "answerText": "ابن خلدون",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_002",
+      "categoryId": "general_knowledge",
+      "text": "ما هو أطول نهر في العالم؟",
+      "answerText": "نهر النيل",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_003",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم صغير الدب؟",
+      "answerText": "ديسم",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_004",
+      "categoryId": "general_knowledge",
+      "text": "ما هي عملة اليابان؟",
+      "answerText": "الين الياباني",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_005",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم صغير الفيل؟",
+      "answerText": "دغفل",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_006",
+      "categoryId": "general_knowledge",
+      "text": "كم عدد العظام في جسم الإنسان؟",
+      "answerText": "206",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_007",
+      "categoryId": "general_knowledge",
+      "text": "ما هو البحر الذي يفصل بين آسيا وأفريقيا؟",
+      "answerText": "البحر الأحمر",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_008",
+      "categoryId": "general_knowledge",
+      "text": "ما هو الجهاز المسؤول عن تنقية الدم في جسم الإنسان؟",
+      "answerText": "الكلية",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_009",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم المضيق الذي يفصل بين إسبانيا والمغرب؟",
+      "answerText": "مضيق جبل طارق",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_010",
+      "categoryId": "general_knowledge",
+      "text": "ما هو اسم القائد الإسلامي قطز قبل أن يسمى بهذا الاسم؟",
+      "answerText": "محمود",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_011",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم الغاز الذي يساعد على إطفاء النار؟",
+      "answerText": "ثاني أكسيد الكربون",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_012",
+      "categoryId": "general_knowledge",
+      "text": "ما هو الكوكب الذي يمتلك أكبر عدد من الأقمار؟",
+      "answerText": "زحل",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_013",
+      "categoryId": "general_knowledge",
+      "text": "من هو أول من جمع القرآن؟",
+      "answerText": "أبو بكر",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_014",
+      "categoryId": "general_knowledge",
+      "text": "ما هي أكبر دولة من حيث المساحة؟",
+      "answerText": "روسيا",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_015",
+      "categoryId": "general_knowledge",
+      "text": "ما هي أصغر دولة من حيث المساحة؟",
+      "answerText": "الفاتيكان",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_016",
+      "categoryId": "general_knowledge",
+      "text": "ما هو أكبر محيط في العالم؟",
+      "answerText": "المحيط الهادئ",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_017",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم أطول سلسلة جبلية؟",
+      "answerText": "سلسلة جبال الأنديز",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_018",
+      "categoryId": "general_knowledge",
+      "text": "من أول نبي بُعث بعد آدم؟",
+      "answerText": "نوح",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_019",
+      "categoryId": "general_knowledge",
+      "text": "ما هي أكبر دولة من حيث عدد السكان؟",
+      "answerText": "الصين",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_020",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم أقدم عاصمة مأهولة في العالم؟",
+      "answerText": "دمشق",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_021",
+      "categoryId": "general_knowledge",
+      "text": "من هو أول خليفة أموي؟",
+      "answerText": "معاوية",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_022",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم العملية التي يتحول بها السائل إلى غاز؟",
+      "answerText": "تبخر",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_023",
+      "categoryId": "general_knowledge",
+      "text": "ما اسم المعركة التي قُتل فيها مسيلمة الكذاب؟",
+      "answerText": "اليمامة",
+      "difficulty": 2
+    },
+    {
+      "id": "general_knowledge_024",
+      "categoryId": "general_knowledge",
+      "text": "ما هي القارة التي تحتوي على أكبر عدد من الدول؟",
+      "answerText": "أفريقيا",
       "difficulty": 2
     }
   ]

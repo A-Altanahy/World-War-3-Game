@@ -253,9 +253,9 @@ class _TeamSetupPageState extends State<TeamSetupPage>
             ))
         .toList();
 
-    // Initialize question service
-    final questionService = QuestionService();
-    await questionService.initialize();
+    // Get initialized question service from global provider
+    final questionService =
+        Provider.of<QuestionService>(context, listen: false);
 
     // Create game state
     final gameState = GameState(
