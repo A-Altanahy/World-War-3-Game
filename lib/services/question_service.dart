@@ -26,9 +26,8 @@ class QuestionService extends ChangeNotifier {
   List<QuestionCategory> get categories =>
       [..._builtinCategories, ..._customCategories];
 
-  List<QuestionCategory> get visibleCategories => categories
-      .where((c) => !c.hidden && !_disabledCategoryIds.contains(c.id))
-      .toList();
+  List<QuestionCategory> get visibleCategories =>
+      categories.where((c) => !_disabledCategoryIds.contains(c.id)).toList();
 
   List<Question> get questions => [
         ..._builtinQuestions
@@ -57,6 +56,13 @@ class QuestionService extends ChangeNotifier {
       _builtinCategories = (catJson['categories'] as List)
           .map((c) => QuestionCategory.fromJson(c))
           .toList();
+
+      // Initialize disabled categories based on hidden flag
+      for (var category in _builtinCategories) {
+        if (category.hidden) {
+          _disabledCategoryIds.add(category.id);
+        }
+      }
 
       // Load Questions
       final qString =
