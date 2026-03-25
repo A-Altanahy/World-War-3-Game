@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:video_player_win/video_player_win.dart';
 import 'package:custom_risk/pages/configuration_selection_page.dart';
 import 'package:custom_risk/services/question_service.dart';
 import 'package:custom_risk/theme/app_theme.dart';
@@ -18,6 +20,10 @@ bool get _isDesktopPlatform {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  if (!kIsWeb && Platform.isWindows) {
+    WindowsVideoPlayer.registerWith();
+  }
 
   if (_isDesktopPlatform) {
     await windowManager.ensureInitialized();

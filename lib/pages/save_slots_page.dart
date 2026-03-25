@@ -5,8 +5,8 @@ import '../theme/app_theme.dart';
 import '../widgets/command_card.dart';
 import '../services/game_storage_service.dart';
 import '../services/question_service.dart';
-import '../game_state.dart';
-import '../map_page.dart';
+import '../services/game_state.dart';
+import 'map_page.dart';
 import '../models/country.dart';
 import '../models/country_positions.dart';
 
@@ -59,13 +59,13 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
         try {
           countriesList = gameStateMap['countries'] as List;
         } catch (e) {
-          print('Error reading countries list: $e');
+
         }
 
         // 1. Check explicitly saved mapAsset (Preferred)
         if (gameStateMap.containsKey('mapAsset')) {
           final savedMapAsset = gameStateMap['mapAsset'] as String;
-          print('Loading Game: Found mapAsset: $savedMapAsset'); // Debug log
+
           if (savedMapAsset.contains('(20)')) {
             is20Map = true;
           }
@@ -76,8 +76,6 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
         // We allow a small range to account for potential variations or miscounting.
         if (!is20Map && countriesList.isNotEmpty) {
           if (countriesList.length >= 15 && countriesList.length <= 22) {
-            print(
-                'Loading Game: Detected Quick Map by count (${countriesList.length}). forcing is20Map = true');
             is20Map = true;
           }
         }
@@ -90,7 +88,7 @@ class _SaveSlotsPageState extends State<SaveSlotsPage> {
           });
         }
 
-        print('Loading Game: is20Map = $is20Map');
+
 
         List<Country> baseCountries;
         String determinedMapAsset;

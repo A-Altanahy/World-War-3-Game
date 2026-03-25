@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../game_state.dart';
+import 'game_state.dart';
 
 class GameStorageService {
   static const String _storageKeyPrefix = 'saved_game_state_';

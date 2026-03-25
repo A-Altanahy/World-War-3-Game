@@ -72,7 +72,7 @@ class QuestionService extends ChangeNotifier {
           .map((q) => Question.fromJson(q))
           .toList();
     } catch (e) {
-      print('Error loading built-in data: $e');
+      debugPrint('Error loading built-in data: $e');
       _builtinCategories = [];
       _builtinQuestions = [];
     }
@@ -114,7 +114,7 @@ class QuestionService extends ChangeNotifier {
         }
       }
     } catch (e) {
-      print('Error loading user data: $e');
+      debugPrint('Error loading user data: $e');
       // If error, start clean
     }
   }
@@ -135,7 +135,7 @@ class QuestionService extends ChangeNotifier {
       await file.writeAsString(json.encode(data));
       notifyListeners();
     } catch (e) {
-      print('Error saving user data: $e');
+      debugPrint('Error saving user data: $e');
     }
   }
 
@@ -191,6 +191,42 @@ class QuestionService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Update an existing question without changing its position in the list (if custom)
+  Future<void> updateQuestion(Question updatedQuestion) async {
+    final customIndex = _customQuestions.indexWhere((q) => q.id == updatedQuestion.id);
+    if (customIndex != -1) {
+      _customQuestions[customIndex] = updatedQuestion;
+    } else {
+      // If it is built-in, we mark the original as deleted and add this as a custom variation
+      _deletedBuiltinQuestionIds.add(updatedQuestion.id);
+      _customQuestions.add(updatedQuestion);
+    }
+    await _saveUserData();
+    notifyListeners();
+  }
+
+  /// Toggle if a question is active or not
+  Future<void> toggleQuestionActiveStatus(String questionId, bool isActive) async {
+    final q = getQuestionById(questionId);
+    if (q == null) return;
+    
+    final updatedQ = Question(
+      id: q.id,
+      categoryId: q.categoryId,
+      text: q.text,
+      imagePath: q.imagePath,
+      audioPath: q.audioPath,
+      videoPath: q.videoPath,
+      answerText: q.answerText,
+      answerImagePath: q.answerImagePath,
+      answerAudioPath: q.answerAudioPath,
+      answerVideoPath: q.answerVideoPath,
+      difficulty: q.difficulty,
+      isActive: isActive,
+    );
+    await updateQuestion(updatedQ);
+  }
+
   /// Toggle visibility of a built-in category
   Future<void> toggleCategoryVisibility(
       String categoryId, bool isVisible) async {
@@ -242,7 +278,7 @@ class QuestionService extends ChangeNotifier {
         .toList();
 
     return questions
-        .where((question) => unrevealedIds.contains(question.id))
+        .where((question) => unrevealedIds.contains(question.id) && question.isActive)
         .toList();
   }
 
@@ -331,7 +367,9 @@ class QuestionService extends ChangeNotifier {
     Map<String, Map<String, int>> stats = {};
 
     for (var category in categories) {
-      final categoryQuestions = getQuestionsByCategory(category.id);
+      final categoryQuestions = getQuestionsByCategory(category.id)
+          .where((q) => q.isActive)
+          .toList();
       final revealedQuestions = categoryQuestions
           .where(
             (q) => isQuestionRevealed(q.id),
@@ -352,7 +390,7 @@ class QuestionService extends ChangeNotifier {
   void restoreQuestionStates(List<dynamic> statesJson) {
     if (statesJson.isEmpty) return;
 
-    print('QuestionService: Restoring ${statesJson.length} question states...');
+
 
     for (var json in statesJson) {
       try {
@@ -367,7 +405,7 @@ class QuestionService extends ChangeNotifier {
           _questionStates.add(state);
         }
       } catch (e) {
-        print('QuestionService: Error restoring state: $e');
+        debugPrint('QuestionService: Error restoring state: $e');
       }
     }
     notifyListeners();

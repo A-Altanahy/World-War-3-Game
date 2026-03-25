@@ -6,8 +6,6 @@ import 'package:uuid/uuid.dart';
 import '../models/country.dart';
 import '../models/country_configuration.dart';
 import '../services/configuration_service.dart';
-import '../utils/coordinate_converter.dart';
-import '../widgets/debug_overlay.dart';
 
 class CountryEditorPage extends StatefulWidget {
   final CountryConfiguration? existingConfiguration;
@@ -50,9 +48,11 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
   void _addCountry(Offset position, Size containerSize) {
     if (_isDragging) return;
 
-    // Convert absolute position to normalized coordinates using proper SVG layout
-    final normalizedPosition =
-        CoordinateConverter.editorToNormalized(position, containerSize);
+    // Convert absolute position to normalized coordinates
+    final normalizedPosition = Offset(
+      position.dx / containerSize.width,
+      position.dy / containerSize.height,
+    );
 
     final countryId = _uuid.v4();
     final country = Country(
@@ -111,9 +111,11 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
       String countryId, Offset newPosition, Size containerSize) {
     final countryIndex = _countries.indexWhere((c) => c.id == countryId);
     if (countryIndex != -1) {
-      // Convert absolute position to normalized coordinates using proper SVG layout
-      final normalizedPosition =
-          CoordinateConverter.editorToNormalized(newPosition, containerSize);
+      // Convert normalized position to absolute position
+      final normalizedPosition = Offset(
+        newPosition.dx / containerSize.width,
+        newPosition.dy / containerSize.height,
+      );
 
       setState(() {
         _countries[countryIndex] = _countries[countryIndex].copyWith(
@@ -241,19 +243,14 @@ class _CountryEditorPageState extends State<CountryEditorPage> {
                               width: double.infinity,
                               height: double.infinity,
                             ),
-                            // Debug overlay to visualize SVG bounds
-                            DebugOverlay(
-                              containerSize: containerSize,
-                              showSvgBounds: true,
-                              showGrid: false,
-                            ),
+
                             // Country markers
                             ..._countries.map((country) {
-                              // Convert normalized position to absolute position using proper SVG layout
-                              final absolutePosition =
-                                  CoordinateConverter.normalizedToEditor(
-                                      country.normalizedPosition,
-                                      containerSize);
+                              // Convert normalized position to absolute position
+                              final absolutePosition = Offset(
+                                country.normalizedPosition.dx * containerSize.width,
+                                country.normalizedPosition.dy * containerSize.height,
+                              );
 
                               return Positioned(
                                 left: absolutePosition.dx - 20,

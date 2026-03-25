@@ -1,6 +1,6 @@
 // lib/map_page.dart
 
-import 'package:custom_risk/game_state.dart';
+import 'package:custom_risk/services/game_state.dart';
 import 'package:custom_risk/theme/app_theme.dart';
 import 'package:custom_risk/utils/fullscreen_helper.dart';
 import 'package:custom_risk/widgets/command_card.dart';
@@ -9,7 +9,7 @@ import 'package:custom_risk/widgets/question_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'services/game_storage_service.dart';
+import '../services/game_storage_service.dart';
 
 class MapPage extends StatefulWidget {
   final int slotId;

@@ -5,6 +5,7 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import '../models/question_category.dart';
 import '../theme/app_theme.dart';
+import '../utils/hex_color.dart';
 import '../widgets/command_card.dart';
 import 'category_details_page.dart';
 
@@ -237,17 +238,4 @@ class _ManageQuestionsPageState extends State<ManageQuestionsPage> {
       if (mounted) setState(() {});
     });
   }
-}
-
-// Helper for hex color (if not already in app)
-class HexColor extends Color {
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll('#', '');
-    if (hexColor.length == 6) {
-      hexColor = 'FF$hexColor';
-    }
-    return int.parse(hexColor, radix: 16);
-  }
-
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

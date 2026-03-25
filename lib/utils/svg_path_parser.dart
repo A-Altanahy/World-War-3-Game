@@ -18,9 +18,7 @@ class SvgPathParser {
     double startX = 0;
     double startY = 0;
 
-    // Control points for smooth curves (S and T)
-    double lastControlX = 0;
-    double lastControlY = 0;
+
 
     final parts = _tokenize(pathData);
 
@@ -86,8 +84,7 @@ class SvgPathParser {
           final x = double.parse(parts[i++]);
           final y = double.parse(parts[i++]);
           path.cubicTo(x1, y1, x2, y2, x, y);
-          lastControlX = x2;
-          lastControlY = y2;
+
           currentX = x;
           currentY = y;
           break;
@@ -99,8 +96,6 @@ class SvgPathParser {
           final x = currentX + double.parse(parts[i++]);
           final y = currentY + double.parse(parts[i++]);
           path.cubicTo(x1, y1, x2, y2, x, y);
-          lastControlX = x2;
-          lastControlY = y2;
           currentX = x;
           currentY = y;
           break;

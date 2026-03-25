@@ -8,6 +8,7 @@ import '../models/question_category.dart';
 import '../services/question_service.dart';
 import '../theme/app_theme.dart';
 import 'command_card.dart';
+import 'media_player_widget.dart';
 
 class QuestionDialog extends StatefulWidget {
   final QuestionService questionService;
@@ -663,7 +664,24 @@ class _QuestionDialogState extends State<QuestionDialog>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (currentQuestion!.hasImageQuestion) ...[
+                if (currentQuestion!.hasVideoQuestion) ...[
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: AppTheme.primaryNeon.withOpacity(0.3),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: VideoPlayerWidget(videoPath: currentQuestion!.videoPath!),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ] else if (currentQuestion!.hasImageQuestion) ...[
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
@@ -684,9 +702,13 @@ class _QuestionDialogState extends State<QuestionDialog>
                   ),
                   const SizedBox(height: 16),
                 ],
+                if (currentQuestion!.hasAudioQuestion) ...[
+                  AudioPlayerWidget(audioPath: currentQuestion!.audioPath!),
+                  const SizedBox(height: 16),
+                ],
                 if (currentQuestion!.hasTextQuestion) ...[
                   Expanded(
-                    flex: currentQuestion!.hasImageQuestion ? 2 : 1,
+                    flex: (currentQuestion!.hasImageQuestion || currentQuestion!.hasVideoQuestion) ? 2 : 1,
                     child: Center(
                       child: Text(
                         currentQuestion!.text!,
@@ -773,7 +795,24 @@ class _QuestionDialogState extends State<QuestionDialog>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (currentQuestion!.answerImagePath != null) ...[
+                  if (currentQuestion!.hasVideoAnswer) ...[
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: AppTheme.successGreen.withOpacity(0.3),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: VideoPlayerWidget(videoPath: currentQuestion!.answerVideoPath!),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ] else if (currentQuestion!.hasImageAnswer) ...[
                     Expanded(
                       flex: 3,
                       child: GestureDetector(
@@ -796,9 +835,13 @@ class _QuestionDialogState extends State<QuestionDialog>
                     ),
                     const SizedBox(height: 16),
                   ],
-                  if (currentQuestion!.answerText != null) ...[
+                  if (currentQuestion!.hasAudioAnswer) ...[
+                    AudioPlayerWidget(audioPath: currentQuestion!.answerAudioPath!),
+                    const SizedBox(height: 16),
+                  ],
+                  if (currentQuestion!.hasTextAnswer) ...[
                     Expanded(
-                      flex: currentQuestion!.answerImagePath != null ? 2 : 1,
+                      flex: (currentQuestion!.hasImageAnswer || currentQuestion!.hasVideoAnswer) ? 2 : 1,
                       child: Center(
                         child: Text(
                           currentQuestion!.answerText!,

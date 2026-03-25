@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:custom_risk/models/country.dart';
 import 'package:custom_risk/utils/svg_path_parser.dart';
-import 'dart:ui'; // Needed for ImageFilter
+
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:custom_risk/theme/app_theme.dart';
+
 
 class VectorMap extends StatefulWidget {
   final String mapAsset;
@@ -84,18 +84,13 @@ class _VectorMapState extends State<VectorMap> {
       // We search for "id="CountryXX"" then scan forward/backward for "d".
       // But standard grep showed they are on the same line/tag usually.
 
-      print('VectorMap: Loading map asset: ${widget.mapAsset}');
-      print('VectorMap: Provided countries count: ${widget.countries.length}');
-      if (widget.countries.isNotEmpty) {
-        print(
-            'VectorMap: Sample Country IDs: ${widget.countries.take(3).map((c) => "${c.id}(${c.svgId})").join(", ")}');
-      }
+
 
       // Regex to find IDs (supports double and single quotes)
       final idRegex = RegExp(r'id=["\047]([^"\047]+)["\047]');
       final allIdMatches = idRegex.allMatches(svgString);
 
-      print('VectorMap: Found ${allIdMatches.length} ID matches in SVG.');
+
 
       for (final match in allIdMatches) {
         String originalId = match.group(1)!;
@@ -135,15 +130,12 @@ class _VectorMapState extends State<VectorMap> {
 
               paths[normId] = path;
               // Debug: Confirm it was added
-              print(
-                  'Creating Map: Success! Added path for "$originalId" (norm: "$normId")');
+
             } catch (e) {
               // Silent catch to prevent console spam
             }
           } else {
-            // Debug: Log ignored IDs to help user find mismatches
-            print(
-                'Creating Map: Ignored SVG ID "$originalId" (norm: "$normId") - Not found in Country list.');
+
           }
         } else {
           // Case 2: ID is on a Group <g id="...">, path is inside.
@@ -172,7 +164,7 @@ class _VectorMapState extends State<VectorMap> {
         }
       }
 
-      print('Parsed ${paths.length} paths for map.');
+
       if (paths.isEmpty) {
         // Collect debug info
         final foundIds = allIdMatches.take(5).map((m) => m.group(1)).join(', ');
@@ -372,6 +364,8 @@ class VectorMapPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant VectorMapPainter oldDelegate) {
-    return true;
+    return oldDelegate.countries != countries ||
+        oldDelegate.paths != paths ||
+        oldDelegate.originalSize != originalSize;
   }
 }

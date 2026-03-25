@@ -1,6 +1,6 @@
 // lib/pages/team_setup_page.dart
 
-import 'package:custom_risk/game_state.dart';
+import 'package:custom_risk/services/game_state.dart';
 import 'package:custom_risk/models/country.dart';
 import 'package:custom_risk/models/team.dart';
 import 'package:custom_risk/services/question_service.dart';
@@ -9,7 +9,7 @@ import 'package:custom_risk/widgets/command_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
-import '../map_page.dart';
+import 'map_page.dart';
 import '../models/country_configuration.dart';
 
 class TeamSetupPage extends StatefulWidget {
@@ -253,9 +253,9 @@ class _TeamSetupPageState extends State<TeamSetupPage>
             ))
         .toList();
 
-    // Create fresh QuestionService for the new game to ensure clean state
-    final questionService = QuestionService();
-    await questionService.initialize();
+    // Use the globally initialized QuestionService from Provider
+    final questionService =
+        Provider.of<QuestionService>(context, listen: false);
 
     // Create game state
     final gameState = GameState(

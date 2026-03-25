@@ -163,3 +163,13 @@ app.*.symbols
 .python-version
 .gclient_previous_custom_vars
 .gclient_previous_sync_commits
+
+# Release archives (should not be in source control)
+*.rar
+*.zip
+*.tar.gz
+*.7z
+
+# Antigravity
+.gemini/
+.agents/
