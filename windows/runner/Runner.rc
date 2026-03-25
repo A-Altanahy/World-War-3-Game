@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "custom_risk" "\0"
+            VALUE "CompanyName", "com.altanahy" "\0"
+            VALUE "FileDescription", "World War III" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "custom_risk" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "custom_risk.exe" "\0"
-            VALUE "ProductName", "custom_risk" "\0"
+            VALUE "InternalName", "WWIII" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.altanahy. All rights reserved." "\0"
+            VALUE "OriginalFilename", "WWIII.exe" "\0"
+            VALUE "ProductName", "World War III" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

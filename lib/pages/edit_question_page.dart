@@ -104,7 +104,7 @@ class _EditQuestionPageState extends State<EditQuestionPage> {
         maxSizeMb = 10;
       } else if (type == FileType.audio) {
         pickerType = FileType.custom;
-        allowedExtensions = ['mp3', 'wav', 'm4a', 'aac', 'flac'];
+        allowedExtensions = ['mp3', 'wav', 'm4a', 'aac', 'flac', 'ogg'];
         maxSizeMb = 15;
       } else if (type == FileType.video) {
         pickerType = FileType.custom;
