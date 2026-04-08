@@ -1,10 +1,10 @@
 [Setup]
 AppName=World War III
-AppVersion=1.2.0
+AppVersion=1.3.0
 DefaultDirName={sd}\Games\World War III
 DefaultGroupName=World War III
 OutputDir=c:\Users\Abdul\projects\World War 3\Installers
-OutputBaseFilename=WWIII_Installer_v1.2
+OutputBaseFilename=WWIII_Installer_v1.3
 Compression=lzma2
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
