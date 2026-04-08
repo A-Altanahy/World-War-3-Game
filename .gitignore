@@ -173,3 +173,10 @@ app.*.symbols
 # Antigravity
 .gemini/
 .agents/
+
+# Installers
+Installers/
+
+# User generated content
+user_questions*.json
+custom_media/

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:custom_risk/services/question_service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
+import '../utils/app_paths.dart';
 import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -418,7 +418,7 @@ class _EditQuestionPageState extends State<EditQuestionPage> {
 
   Future<String?> _saveCopyOfMedia(File mediaFile) async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
+      final directory = await AppPaths.getCustomDataDirectory();
       final customMediaDir = Directory('${directory.path}/custom_media');
       if (!await customMediaDir.exists()) {
         await customMediaDir.create(recursive: true);

@@ -1,58 +1,65 @@
 {
-    "categories": [
-        {
-            "id": "general",
-            "name": "ألغاز",
-            "description": "أسئلة ألغاز عامة",
-            "color": "#2196F3",
-            "hidden": true
-        },
-        {
-            "id": "religious",
-            "name": "أسئلة دينية",
-            "description": "أسئلة دينية متنوعة",
-            "color": "#4CAF50"
-        },
-        {
-            "id": "general_knowledge",
-            "name": "أسئلة عامة",
-            "description": "أسئلة ثقافية عامة",
-            "color": "#2196F3"
-        },
-
-        {
-            "id": "math",
-            "name": "رياضيات",
-            "description": "أسئلة رياضية",
-            "color": "#FF9800"
-        },
-        {
-            "id": "zoom",
-            "name": "زووووم",
-            "description": "أسئلة زووم",
-            "color": "#F44336",
-            "hidden": true
-        },
-        {
-            "id": "surah_names",
-            "name": "في أي سورة",
-            "description": "أسئلة عن أسماء السور",
-            "color": "#4CAF50",
-            "hidden": true
-        },
-        {
-            "id": "strange_words",
-            "name": "كلمات غريبة",
-            "description": "أسئلة عن غريب القرآن",
-            "color": "#673AB7",
-            "hidden": true
-        },
-        {
-            "id": "seerah",
-            "name": "سيرة",
-            "description": "أسئلة عن السيرة النبوية",
-            "color": "#00BCD4",
-            "hidden": true
-        }
-    ]
+  "categories": [
+    {
+      "id": "general",
+      "name": "ألغاز",
+      "description": "أسئلة ألغاز عامة",
+      "color": "#2196F3",
+      "hidden": true
+    },
+    {
+      "id": "religious",
+      "name": "أسئلة دينية",
+      "description": "أسئلة دينية متنوعة",
+      "color": "#4CAF50"
+    },
+    {
+      "id": "general_knowledge",
+      "name": "أسئلة عامة",
+      "description": "أسئلة ثقافية عامة",
+      "color": "#2196F3"
+    },
+    {
+      "id": "math",
+      "name": "رياضيات",
+      "description": "أسئلة رياضية",
+      "color": "#FF9800"
+    },
+    {
+      "id": "zoom",
+      "name": "زووووم",
+      "description": "أسئلة زووم",
+      "color": "#F44336",
+      "hidden": true
+    },
+    {
+      "id": "surah_names",
+      "name": "في أي سورة",
+      "description": "أسئلة عن أسماء السور",
+      "color": "#4CAF50",
+      "hidden": true
+    },
+    {
+      "id": "strange_words",
+      "name": "كلمات غريبة",
+      "description": "أسئلة عن غريب القرآن",
+      "color": "#673AB7",
+      "hidden": true
+    },
+    {
+      "id": "seerah",
+      "name": "سيرة",
+      "description": "أسئلة عن السيرة النبوية",
+      "color": "#00BCD4",
+      "hidden": true
+    },
+    {
+      "id": "2a1aa274-fc6e-42ca-b379-9c5c87572bf6",
+      "name": "صوت مشايخ",
+      "description": "فئة خاصة",
+      "iconPath": null,
+      "color": "#9e9e9e",
+      "hidden": false
+    }
+  ]
 }

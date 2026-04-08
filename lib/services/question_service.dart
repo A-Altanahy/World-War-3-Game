@@ -5,7 +5,8 @@ import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
+
+import '../utils/app_paths.dart';
 import '../models/question.dart';
 import '../models/question_category.dart';
 import '../models/question_state.dart';
@@ -81,7 +82,7 @@ class QuestionService extends ChangeNotifier {
   /// Load user custom data from local storage
   Future<void> _loadUserData() async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
+      final directory = await AppPaths.getCustomDataDirectory();
       final file = File('${directory.path}/$_userDataFileName');
 
       if (await file.exists()) {
@@ -122,7 +123,7 @@ class QuestionService extends ChangeNotifier {
   /// Save user custom data to local storage
   Future<void> _saveUserData() async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
+      final directory = await AppPaths.getCustomDataDirectory();
       final file = File('${directory.path}/$_userDataFileName');
 
       final data = {
