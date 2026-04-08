@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'package:video_player/video_player.dart';
 import '../theme/app_theme.dart';
 
@@ -18,6 +21,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
   bool _hasError = false;
+  File? _tempAudioFile;
 
   @override
   void initState() {
@@ -36,7 +40,24 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
         if (!assetPath.startsWith('assets/')) {
           assetPath = 'assets/questions/$assetPath';
         }
-        await _audioPlayer.setAsset(assetPath);
+        if (Platform.isWindows) {
+          // On Windows, setAsset() fails with just_audio_windows.
+          // Extract the asset to a temp file and use setFilePath() instead.
+          final byteData = await rootBundle.load(assetPath);
+          final tempDir = await getTemporaryDirectory();
+          final ext = assetPath.contains('.') ? '.${assetPath.split('.').last}' : '';
+          final tempFile = File(
+            '${tempDir.path}/ww3_audio_${path.hashCode}$ext',
+          );
+          await tempFile.writeAsBytes(
+            byteData.buffer.asUint8List(),
+            flush: true,
+          );
+          _tempAudioFile = tempFile;
+          await _audioPlayer.setFilePath(tempFile.path);
+        } else {
+          await _audioPlayer.setAsset(assetPath);
+        }
       }
       _audioPlayer.durationStream.listen((d) {
         if (mounted && d != null) setState(() => _duration = d);
@@ -56,6 +77,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
         }
       });
     } catch (e) {
+      debugPrint('AudioPlayerWidget: Error loading audio: $e');
       if (mounted) setState(() => _hasError = true);
     }
   }
@@ -63,6 +85,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   @override
   void dispose() {
     _audioPlayer.dispose();
+    _tempAudioFile?.delete().ignore();
     super.dispose();
   }
 
