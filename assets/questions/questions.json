@@ -638,76 +638,6 @@
       "difficulty": 2
     },
     {
-      "id": "surah_names_001",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" العذابَ اﻷكبرَ \"؟",
-      "answerText": "سورة الغاشية",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_002",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ويصلى سعيرا \"؟",
-      "answerText": "سورة الانشقاق",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_003",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" وإذا البحار فجّرت \"؟",
-      "answerText": "سورة الانفطار",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_004",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" إن للمتّقين مفازا \"؟",
-      "answerText": "سورة النبأ",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_005",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كلا بل تحبّون العاجلة \"؟",
-      "answerText": "سورة القيامة",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_006",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أشتاتًا \"؟",
-      "answerText": "سورة الزلزلة",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_007",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ونيسرك لليسرى \"؟",
-      "answerText": "سورة الأعلى",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_008",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" نار الله الموقدة \"؟",
-      "answerText": "سورة الهمزة",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_009",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أيحسب أن لم يره أحد \"؟",
-      "answerText": "سورة البلد",
-      "difficulty": 2
-    },
-    {
-      "id": "surah_names_010",
-      "categoryId": "surah_names",
-      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كرامٍ بررة \"؟",
-      "answerText": "سورة عبس",
-      "difficulty": 2
-    },
-    {
       "id": "religious_001",
       "categoryId": "religious",
       "text": "من كان رأس الفتنة في عهد عثمان بن عفان؟",
@@ -1132,6 +1062,216 @@
       "categoryId": "general_knowledge",
       "text": "ما هي القارة التي تحتوي على أكبر عدد من الدول؟",
       "answerText": "أفريقيا",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_001",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" العذابَ اﻷكبرَ \"؟",
+      "answerText": "سورة الغاشية",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_002",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ويصلى سعيرا \"؟",
+      "answerText": "سورة الانشقاق",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_003",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" وإذا البحار فجّرت \"؟",
+      "answerText": "سورة الانفطار",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_004",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" إن للمتّقين مفازا \"؟",
+      "answerText": "سورة النبأ",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_005",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كلا بل تحبّون العاجلة \"؟",
+      "answerText": "سورة القيامة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_006",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أشتاتًا \"؟",
+      "answerText": "سورة الزلزلة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_007",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" ونيسرك لليسرى \"؟",
+      "answerText": "سورة الأعلى",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_008",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" نار الله الموقدة \"؟",
+      "answerText": "سورة الهمزة",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_009",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" أيحسب أن لم يره أحد \"؟",
+      "answerText": "سورة البلد",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_010",
+      "categoryId": "surah_names",
+      "text": "ما اسم السورة التي ورد فيها قوله تعالى: \" كرامٍ بررة \"؟",
+      "answerText": "سورة عبس",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_001",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_001.mov",
+      "answerImagePath": "surah_names/answers/surah_names_001.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_002",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_002.mov",
+      "answerImagePath": "surah_names/answers/surah_names_002.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_003",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_003.mov",
+      "answerImagePath": "surah_names/answers/surah_names_003.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_004",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_004.mov",
+      "answerImagePath": "surah_names/answers/surah_names_004.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_005",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_005.mov",
+      "answerImagePath": "surah_names/answers/surah_names_005.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_006",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_006.mov",
+      "answerImagePath": "surah_names/answers/surah_names_006.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_007",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_007.mov",
+      "answerImagePath": "surah_names/answers/surah_names_007.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_008",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_008.mov",
+      "answerImagePath": "surah_names/answers/surah_names_008.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_009",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_009.mov",
+      "answerImagePath": "surah_names/answers/surah_names_009.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_010",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_010.mov",
+      "answerImagePath": "surah_names/answers/surah_names_010.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_011",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_011.mov",
+      "answerImagePath": "surah_names/answers/surah_names_011.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_012",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_012.mov",
+      "answerImagePath": "surah_names/answers/surah_names_012.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_013",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_013.mov",
+      "answerImagePath": "surah_names/answers/surah_names_013.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_014",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_014.mov",
+      "answerImagePath": "surah_names/answers/surah_names_014.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_015",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_015.mov",
+      "answerImagePath": "surah_names/answers/surah_names_015.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_016",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_016.mov",
+      "answerImagePath": "surah_names/answers/surah_names_016.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_017",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_017.mov",
+      "answerImagePath": "surah_names/answers/surah_names_017.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_018",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_018.mov",
+      "answerImagePath": "surah_names/answers/surah_names_018.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_019",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_019.mov",
+      "answerImagePath": "surah_names/answers/surah_names_019.png",
+      "difficulty": 2
+    },
+    {
+      "id": "surah_names_video_020",
+      "categoryId": "surah_names_video",
+      "videoPath": "surah_names/questions/surah_names_020.mov",
+      "answerImagePath": "surah_names/answers/surah_names_020.png",
       "difficulty": 2
     }
   ]

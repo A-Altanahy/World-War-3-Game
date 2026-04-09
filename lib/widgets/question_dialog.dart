@@ -28,6 +28,7 @@ class _QuestionDialogState extends State<QuestionDialog>
   Question? currentQuestion;
   bool showAnswer = false;
   bool isLoading = false;
+  bool _isVisualQuestionFullscreen = false;
 
   late AnimationController _slideController;
   late AnimationController _fadeController;
@@ -230,8 +231,77 @@ class _QuestionDialogState extends State<QuestionDialog>
     );
   }
 
+  bool get _isQuestionVisualOnly {
+    final question = currentQuestion;
+    if (question == null) {
+      return false;
+    }
+
+    return !question.hasTextQuestion &&
+        !question.hasAudioQuestion &&
+        (question.hasImageQuestion || question.hasVideoQuestion);
+  }
+
+  void _syncVisualQuestionFullscreen(Question? question) {
+    if (question == null) {
+      _isVisualQuestionFullscreen = false;
+      return;
+    }
+
+    _isVisualQuestionFullscreen = !question.hasTextQuestion &&
+        !question.hasAudioQuestion &&
+        (question.hasImageQuestion || question.hasVideoQuestion);
+  }
+
+  Widget _buildVisualFullscreenQuestion() {
+    final question = currentQuestion!;
+
+    return Dialog.fullscreen(
+      backgroundColor: Colors.black,
+      child: SafeArea(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            setState(() {
+              _isVisualQuestionFullscreen = false;
+            });
+          },
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Center(
+                  child: question.hasVideoQuestion
+                      ? VideoPlayerWidget(
+                          videoPath: question.videoPath!,
+                          tapAnywhereToToggle: false,
+                          showProgressBar: false,
+                          allowScrubbing: false,
+                        )
+                      : InteractiveViewer(
+                          minScale: 0.5,
+                          maxScale: 4.0,
+                          child: SizedBox.expand(
+                            child: _buildImageWidget(
+                              question.imagePath!,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_isVisualQuestionFullscreen && !showAnswer && _isQuestionVisualOnly) {
+      return _buildVisualFullscreenQuestion();
+    }
+
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(16),
@@ -667,37 +737,91 @@ class _QuestionDialogState extends State<QuestionDialog>
                 if (currentQuestion!.hasVideoQuestion) ...[
                   Expanded(
                     flex: 3,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: AppTheme.primaryNeon.withOpacity(0.3),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: AppTheme.primaryNeon.withOpacity(0.3),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: VideoPlayerWidget(
+                              videoPath: currentQuestion!.videoPath!,
+                            ),
+                          ),
                         ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: VideoPlayerWidget(videoPath: currentQuestion!.videoPath!),
-                      ),
+                        if (_isQuestionVisualOnly)
+                          Positioned(
+                            top: 12,
+                            right: 12,
+                            child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isVisualQuestionFullscreen = true;
+                                });
+                              },
+                              style: IconButton.styleFrom(
+                                backgroundColor: Colors.black54,
+                                foregroundColor: Colors.white,
+                              ),
+                              icon: const Icon(Icons.fullscreen),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
                 ] else if (currentQuestion!.hasImageQuestion) ...[
                   Expanded(
                     flex: 3,
-                    child: GestureDetector(
-                      onTap: () => _showImageZoom(currentQuestion!.imagePath!),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: AppTheme.primaryNeon.withOpacity(0.3),
+                    child: Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (_isQuestionVisualOnly) {
+                              setState(() {
+                                _isVisualQuestionFullscreen = true;
+                              });
+                            } else {
+                              _showImageZoom(currentQuestion!.imagePath!);
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: AppTheme.primaryNeon.withOpacity(0.3),
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: _buildImageWidget(currentQuestion!.imagePath!),
+                            ),
                           ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: _buildImageWidget(currentQuestion!.imagePath!),
-                        ),
-                      ),
+                        if (_isQuestionVisualOnly)
+                          Positioned(
+                            top: 12,
+                            right: 12,
+                            child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isVisualQuestionFullscreen = true;
+                                });
+                              },
+                              style: IconButton.styleFrom(
+                                backgroundColor: Colors.black54,
+                                foregroundColor: Colors.white,
+                              ),
+                              icon: const Icon(Icons.fullscreen),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -929,6 +1053,7 @@ class _QuestionDialogState extends State<QuestionDialog>
       if (mounted) {
         setState(() {
           currentQuestion = question;
+          _syncVisualQuestionFullscreen(question);
           isLoading = false;
           showAnswer = false;
         });
@@ -940,6 +1065,7 @@ class _QuestionDialogState extends State<QuestionDialog>
     _flipController.forward();
     setState(() {
       showAnswer = true;
+      _isVisualQuestionFullscreen = false;
     });
   }
 
@@ -949,6 +1075,7 @@ class _QuestionDialogState extends State<QuestionDialog>
       setState(() {
         showAnswer = false;
         isLoading = true;
+        _isVisualQuestionFullscreen = false;
       });
 
       Future.delayed(const Duration(milliseconds: 500), () {
@@ -960,6 +1087,7 @@ class _QuestionDialogState extends State<QuestionDialog>
         if (mounted) {
           setState(() {
             currentQuestion = question;
+            _syncVisualQuestionFullscreen(question);
             isLoading = false;
           });
         }
@@ -973,6 +1101,7 @@ class _QuestionDialogState extends State<QuestionDialog>
       currentQuestion = null;
       showAnswer = false;
       isLoading = false;
+      _isVisualQuestionFullscreen = false;
     });
     _flipController.reset();
   }

@@ -138,7 +138,17 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
 
 class VideoPlayerWidget extends StatefulWidget {
   final String videoPath;
-  const VideoPlayerWidget({Key? key, required this.videoPath}) : super(key: key);
+  final bool tapAnywhereToToggle;
+  final bool showProgressBar;
+  final bool allowScrubbing;
+
+  const VideoPlayerWidget({
+    Key? key,
+    required this.videoPath,
+    this.tapAnywhereToToggle = true,
+    this.showProgressBar = true,
+    this.allowScrubbing = true,
+  }) : super(key: key);
 
   @override
   State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
@@ -215,10 +225,26 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         alignment: Alignment.center,
         children: [
           VideoPlayer(_controller),
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.tapAnywhereToToggle
+                  ? () {
+                      setState(() {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      });
+                    }
+                  : null,
+            ),
+          ),
           GestureDetector(
             onTap: () {
               setState(() {
-                _controller.value.isPlaying ? _controller.pause() : _controller.play();
+                _controller.value.isPlaying
+                    ? _controller.pause()
+                    : _controller.play();
               });
             },
             child: AnimatedOpacity(
@@ -238,21 +264,21 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
               ),
             ),
           ),
-          // Simple progress bar at the bottom
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: VideoProgressIndicator(
-              _controller,
-              allowScrubbing: true,
-              colors: const VideoProgressColors(
-                playedColor: AppTheme.primaryNeon,
-                bufferedColor: Colors.white24,
-                backgroundColor: Colors.black45,
+          if (widget.showProgressBar)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: VideoProgressIndicator(
+                _controller,
+                allowScrubbing: widget.allowScrubbing,
+                colors: const VideoProgressColors(
+                  playedColor: AppTheme.primaryNeon,
+                  bufferedColor: Colors.white24,
+                  backgroundColor: Colors.black45,
+                ),
               ),
-            ),
-          )
+            )
         ],
       ),
     );

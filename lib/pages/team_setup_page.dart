@@ -257,6 +257,8 @@ class _TeamSetupPageState extends State<TeamSetupPage>
     final questionService =
         Provider.of<QuestionService>(context, listen: false);
 
+    questionService.resetQuestionStates();
+
     // Create game state
     final gameState = GameState(
       teams: _teams,

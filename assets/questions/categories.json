@@ -19,7 +19,6 @@
             "description": "أسئلة ثقافية عامة",
             "color": "#2196F3"
         },
-
         {
             "id": "math",
             "name": "رياضيات",
@@ -38,7 +37,14 @@
             "name": "في أي سورة",
             "description": "أسئلة عن أسماء السور",
             "color": "#4CAF50",
-            "hidden": true
+            "hidden": false
+        },
+        {
+            "id": "surah_names_video",
+            "name": "في أي سورة (فيديو)",
+            "description": "أسئلة في أي سورة باستخدام مقاطع فيديو وصور إجابات",
+            "color": "#4CAF50",
+            "hidden": false
         },
         {
             "id": "strange_words",

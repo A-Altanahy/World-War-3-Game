@@ -152,6 +152,7 @@ class _EditQuestionPageState extends State<EditQuestionPage> {
       }
     } catch (e) {
       debugPrint('Error picking media: $e');
+      _showMediaError('تعذر اختيار الملف: $e');
     }
   }
 
