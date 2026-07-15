@@ -14,10 +14,22 @@
             "color": "#4CAF50"
         },
         {
+            "id": "religious_2",
+            "name": "دينية ٢",
+            "description": "أسئلة دينية متنوعة ٢",
+            "color": "#388E3C"
+        },
+        {
             "id": "general_knowledge",
             "name": "أسئلة عامة",
             "description": "أسئلة ثقافية عامة",
             "color": "#2196F3"
+        },
+        {
+            "id": "miscellaneous",
+            "name": "أسئلة متنوعة",
+            "description": "أسئلة عامة ومتنوعة",
+            "color": "#FF5722"
         },
         {
             "id": "math",

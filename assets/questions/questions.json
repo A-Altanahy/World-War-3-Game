@@ -1658,6 +1658,258 @@
       "text": "لمن الملك اليوم",
       "answerText": "الله عز وجل",
       "difficulty": 2
+    },
+    {
+      "id": "religious_2_001",
+      "categoryId": "religious_2",
+      "text": "من هو النبي الذي سماه الله عز وجل بنفسه؟",
+      "answerText": "يحيى عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_002",
+      "categoryId": "religious_2",
+      "text": "من أول من خاط الثياب ولبسها ؟",
+      "answerText": "إدريس عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_003",
+      "categoryId": "religious_2",
+      "text": "من هي أم إسماعيل عليه السلام ؟",
+      "answerText": "هاجر",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_004",
+      "categoryId": "religious_2",
+      "text": "ذكر في القرآن الكريم حيوان قتل من قبل الانسان فما هو؟",
+      "answerText": "الناقة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_005",
+      "categoryId": "religious_2",
+      "text": "من الذي أرسله أبو بكر ليفتح فلسطين ؟",
+      "answerText": "عمرو بن العاص",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_006",
+      "categoryId": "religious_2",
+      "text": "من الذي قتل علي بن أبي طالب ؟",
+      "answerText": "عبدالرحمن بن ملجم",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_007",
+      "categoryId": "religious_2",
+      "text": "من هو الصحابي الذي حمل رسالة النبي إلى مقوقس مصر ؟",
+      "answerText": "حاطب بن أبي بلتعة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_008",
+      "categoryId": "religious_2",
+      "text": "من الصحابي الذي أكل مع الرسول يوم خيبر من الشاة المسمومة ومات؟",
+      "answerText": "بشر بن البراء",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_009",
+      "categoryId": "religious_2",
+      "text": "من الصحابي الذي قال له الرسول: إن الله أمرني أن أقرأ عليك لم يكن الذين كفروا ؟",
+      "answerText": "أبي بن كعب",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_010",
+      "categoryId": "religious_2",
+      "text": "من هو الصحابي الذي استمعت إليه الملائكة وهو يقرأ سورة البقرة؟",
+      "answerText": "أسيد بن حضير",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_011",
+      "categoryId": "religious_2",
+      "text": "من الشخص الذي لحق بالنبي صلى الله عليه وسلم وصاحبه في طريق الهجرة إلى المدينة ؟",
+      "answerText": "سراقة بن مالك",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_012",
+      "categoryId": "religious_2",
+      "text": "من كان دليل الرسول صلى الله عليه وسلم في هجرته ؟",
+      "answerText": "عبدالله بن أريقط",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_013",
+      "categoryId": "religious_2",
+      "text": "من هو الوحيد من أعمام النبي صلى الله عليه وسلم الذي شهد وفاة النبي عليه الصلاة والسلام ؟",
+      "answerText": "العباس بن عبدالمطلب",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_014",
+      "categoryId": "religious_2",
+      "text": "من هي أول زوجة للنبي صلى الله عليه وسلم بعد وفاة السيدة خديجة؟",
+      "answerText": "سودة بنت زمعة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_015",
+      "categoryId": "religious_2",
+      "text": "كم عدد السور المدنية ؟",
+      "answerText": "٢٨",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_016",
+      "categoryId": "religious_2",
+      "text": "ما هي سورة التوديع ؟",
+      "answerText": "سورة النصر",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_017",
+      "categoryId": "religious_2",
+      "text": "كم عدد أرباع القرآن الكريم ؟",
+      "answerText": "٢٤٠",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_018",
+      "categoryId": "religious_2",
+      "text": "عمة النبي صلى الله عليه وسلم التي قتلت يهوديا في غزوة الأحزاب ؟",
+      "answerText": "صفية بنت عبدالمطلب",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_019",
+      "categoryId": "religious_2",
+      "text": "عدد الغزوات التي قاتل فيها الرسول صلى الله عليه وسلم ؟",
+      "answerText": "تسع غزوات",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_020",
+      "categoryId": "religious_2",
+      "text": "من هو خطيب النبي صلى الله عليه وسلم ؟",
+      "answerText": "ثابت بن قيس",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_021",
+      "categoryId": "religious_2",
+      "text": "زوجة النبي صلى الله عليه وسلم التي كانت تسمى ب أم المساكين ؟",
+      "answerText": "زينب بنت خزيمة",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_022",
+      "categoryId": "religious_2",
+      "text": "من هو أول من ولي قضاء فلسطين ؟",
+      "answerText": "عبادة بن الصامت",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_023",
+      "categoryId": "religious_2",
+      "text": "من هو أول من بايع بيعة الرضوان ؟",
+      "answerText": "أبو سنان الأسدي",
+      "difficulty": 2
+    },
+    {
+      "id": "religious_2_024",
+      "categoryId": "religious_2",
+      "text": "من هو أول مولود في الإسلام من المهاجرين في المدينة ؟",
+      "answerText": "عبدالله بن الزبير",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_001",
+      "categoryId": "miscellaneous",
+      "text": "ماهو مقياس سرعة السفن؟",
+      "answerText": "العقدة",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_002",
+      "categoryId": "miscellaneous",
+      "text": "ما هو الكوكب المسمى بالكوكب الأحمر؟",
+      "answerText": "كوكب المريخ",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_003",
+      "categoryId": "miscellaneous",
+      "text": "ما هو المكون الرئيسي للزجاج؟",
+      "answerText": "الرمل",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_004",
+      "categoryId": "miscellaneous",
+      "text": "ما هو الشيء الموجود بالسماء، ولو قمنا بإضافة حرف له لأصبح في الأرض؟",
+      "answerText": "النجم (بإضافة حرف الميم لأصبح منجم)",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_005",
+      "categoryId": "miscellaneous",
+      "text": "اسم ولد مكون من 4 أحرف، لو قمنا بحذف آخر حرف منه صار اسم فرد من أفراد العائلة؟",
+      "answerText": "خالد (بحذف آخر حرف يصبح خال)",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_006",
+      "categoryId": "miscellaneous",
+      "text": "ما هي لغة النمسا ؟",
+      "answerText": "الألمانية",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_007",
+      "categoryId": "miscellaneous",
+      "text": "ما هو عدد الدول العربية التي توجد في قارة إفريقيا؟",
+      "answerText": "١٠",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_008",
+      "categoryId": "miscellaneous",
+      "text": "ماهي المعركة التي استخدم فيها النبي صلى الله عليه وسلم المنجنيق ؟",
+      "answerText": "الطائف",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_009",
+      "categoryId": "miscellaneous",
+      "text": "من هو مؤسس علم الجبر ؟",
+      "answerText": "الخوارزمي",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_010",
+      "categoryId": "miscellaneous",
+      "text": "أول جامعة أسست في العالم ؟",
+      "answerText": "جامعة القرويين",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_011",
+      "categoryId": "miscellaneous",
+      "text": "من هو القائد العربي الذي فتح الصين؟",
+      "answerText": "قتيبة بن مسلم",
+      "difficulty": 2
+    },
+    {
+      "id": "miscellaneous_012",
+      "categoryId": "miscellaneous",
+      "text": "ما هو العدد الذي إذا ضربته في أي رقم آخر يعطيك نفس النتيجة ؟",
+      "answerText": "صفر",
+      "difficulty": 2
     }
   ]
 }
