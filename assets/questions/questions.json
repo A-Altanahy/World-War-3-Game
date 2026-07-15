@@ -1273,6 +1273,391 @@
       "videoPath": "surah_names/questions/surah_names_020.mov",
       "answerImagePath": "surah_names/answers/surah_names_020.png",
       "difficulty": 2
+    },
+    {
+      "id": "four_pics_001",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/نعنع.jpg",
+      "answerText": "نعنع",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_002",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/شجاع.jpg",
+      "answerText": "شجاع",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_003",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/قبلة.jpg",
+      "answerText": "قبلة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_004",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/حطام.jpg",
+      "answerText": "حطام",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_005",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/يمين.jpg",
+      "answerText": "يمين",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_006",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/نادر.jpg",
+      "answerText": "نادر",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_007",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/خلية.jpg",
+      "answerText": "خلية",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_008",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/تلوث.jpg",
+      "answerText": "تلوث",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_009",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/أحمر.jpg",
+      "answerText": "أحمر",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_010",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/بقرة.jpg",
+      "answerText": "بقرة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_011",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/فساد.jpg",
+      "answerText": "فساد",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_012",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/مجفف.jpg",
+      "answerText": "مجفف",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_013",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/شتاء.jpg",
+      "answerText": "شتاء",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_014",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/ناعم.jpg",
+      "answerText": "ناعم",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_015",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/مخطط.jpg",
+      "answerText": "مخطط",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_016",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/شرطة.jpg",
+      "answerText": "شرطة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_017",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/رسمي.jpg",
+      "answerText": "رسمي",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_018",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/صافي.jpg",
+      "answerText": "صافي",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_019",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/سلطة.jpg",
+      "answerText": "سلطة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_020",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/موجة.jpg",
+      "answerText": "موجة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_021",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/نابض.jpg",
+      "answerText": "نابض",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_022",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/بيبسي.jpg",
+      "answerText": "بيبسي",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_023",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/حرير.jpg",
+      "answerText": "حرير",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_024",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/طاقة.jpg",
+      "answerText": "طاقة",
+      "difficulty": 2
+    },
+    {
+      "id": "four_pics_025",
+      "categoryId": "four_pics_one_word",
+      "imagePath": "images/four_pics_one_word/عربي.jpg",
+      "answerText": "عربي",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_001",
+      "categoryId": "who_said_it",
+      "text": "اليوم يغفر الله لكم",
+      "answerText": "يوسف عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_002",
+      "categoryId": "who_said_it",
+      "text": "أصلاتك تأمرك أن نترك ما يعبد آباؤنا أو أن نفعل في أموالنا ما نشاء",
+      "answerText": "قوم شعيب",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_003",
+      "categoryId": "who_said_it",
+      "text": "إنما أوتيته على علم عندي",
+      "answerText": "قارون",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_004",
+      "categoryId": "who_said_it",
+      "text": "إنما أشكو بثي وحزني إلى الله",
+      "answerText": "يعقوب",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_005",
+      "categoryId": "who_said_it",
+      "text": "بَصُرت بما لم يَبصُروا به",
+      "answerText": "السامري",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_006",
+      "categoryId": "who_said_it",
+      "text": "ما تعبدون من بعدي",
+      "answerText": "يعقوب",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_007",
+      "categoryId": "who_said_it",
+      "text": "لا تجعلني مع القوم الظالمين",
+      "answerText": "هارون",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_008",
+      "categoryId": "who_said_it",
+      "text": "إني أخاف أن يبدل دينكم",
+      "answerText": "فرعون",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_009",
+      "categoryId": "who_said_it",
+      "text": "أحطت بما لم تحط به",
+      "answerText": "الهدهد",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_010",
+      "categoryId": "who_said_it",
+      "text": "لا إله إلا أنت",
+      "answerText": "يونس عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_011",
+      "categoryId": "who_said_it",
+      "text": "أخرجوهم من قريتكم",
+      "answerText": "قوم لوط",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_012",
+      "categoryId": "who_said_it",
+      "text": "إنا ءامنا بربنا",
+      "answerText": "السحرة",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_013",
+      "categoryId": "who_said_it",
+      "text": "رب اغفر لي و هب لي ملكاً",
+      "answerText": "سليمان عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_014",
+      "categoryId": "who_said_it",
+      "text": "ليس بي ضلالة",
+      "answerText": "نوح عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_015",
+      "categoryId": "who_said_it",
+      "text": "ليس بي سفاهة",
+      "answerText": "هود عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_016",
+      "categoryId": "who_said_it",
+      "text": "لقد ظلمك",
+      "answerText": "داود عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_017",
+      "categoryId": "who_said_it",
+      "text": "إني لكما من الناصحين",
+      "answerText": "إبليس",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_018",
+      "categoryId": "who_said_it",
+      "text": "لن نصبر",
+      "answerText": "بنو إسرائيل",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_019",
+      "categoryId": "who_said_it",
+      "text": "رب اجعل هذا بلدا آمنا",
+      "answerText": "إبراهيم عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_020",
+      "categoryId": "who_said_it",
+      "text": "إن الله مبتليكم",
+      "answerText": "طالوت",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_021",
+      "categoryId": "who_said_it",
+      "text": "ليطمئن قلبي",
+      "answerText": "إبراهيم عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_022",
+      "categoryId": "who_said_it",
+      "text": "افعل ما تؤمر",
+      "answerText": "إسماعيل عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_023",
+      "categoryId": "who_said_it",
+      "text": "أعرض عن هذا",
+      "answerText": "عزيز مصر",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_024",
+      "categoryId": "who_said_it",
+      "text": "يا ليتني لم أشرك",
+      "answerText": "صاحب الجنتين",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_025",
+      "categoryId": "who_said_it",
+      "text": "أنى لك هذا",
+      "answerText": "زكريا عليه السلام",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_026",
+      "categoryId": "who_said_it",
+      "text": "أفيضوا علينا من الماء",
+      "answerText": "أهل النار",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_027",
+      "categoryId": "who_said_it",
+      "text": "ربنا ظلمنا أنفسنا",
+      "answerText": "آدم وحواء",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_028",
+      "categoryId": "who_said_it",
+      "text": "قد وجدنا ما وعدنا ربنا حقا",
+      "answerText": "أهل الجنة",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_029",
+      "categoryId": "who_said_it",
+      "text": "نبأني العليم الخبير",
+      "answerText": "محمد صلى الله عليه وسلم",
+      "difficulty": 2
+    },
+    {
+      "id": "who_said_it_030",
+      "categoryId": "who_said_it",
+      "text": "لمن الملك اليوم",
+      "answerText": "الله عز وجل",
+      "difficulty": 2
     }
   ]
 }

@@ -59,6 +59,20 @@
             "description": "أسئلة عن السيرة النبوية",
             "color": "#00BCD4",
             "hidden": true
+        },
+        {
+            "id": "four_pics_one_word",
+            "name": "٤ صور وكلمة",
+            "description": "خمن الكلمة المشتركة بين الصور الأربعة",
+            "color": "#9C27B0",
+            "hidden": false
+        },
+        {
+            "id": "who_said_it",
+            "name": "من القائل من القرآن",
+            "description": "خمن من قال هذه الآية في القرآن الكريم",
+            "color": "#2E7D32",
+            "hidden": false
         }
     ]
 }
